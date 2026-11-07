@@ -7,22 +7,34 @@
   <meta name="theme-color" content="#101812" />
   <title>Player Release Tracker | Touchline Intel</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="site-nav.js" defer></script>
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="Touchline Intel home">
-      <span class="brand-mark" aria-hidden="true">TI</span>
-      <span>TOUCHLINE <b>INTEL</b></span>
-    </a>
-    <nav aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="index.html#latest-players">Latest players</a>
-      <a href="index.html#player-styles">Player styles</a>
-      <a href="player-tracker.html" aria-current="page">Player tracker</a>
-      <a href="redeem-codes.html">Code notices</a>
-      <a href="coach-squad-guides.html">Coach &amp; squad guides</a>
-    </nav>
-    <a class="header-cta" href="index.html#calculator">Pack calculator <span aria-hidden="true">↗</span></a>
+    <div class="header-top-row">
+      <a class="brand" href="index.html#home" aria-label="Touchline Intel home">
+        <span class="brand-mark" aria-hidden="true">TI</span>
+        <span>TOUCHLINE <b>INTEL</b></span>
+      </a>
+      <a class="header-cta" href="index.html#calculator">Check the odds <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="nav-frame">
+      <button class="nav-arrow nav-arrow-left" type="button" aria-label="Scroll navigation left" data-scroll-direction="-1">‹</button>
+      <nav class="site-nav" aria-label="Main navigation" tabindex="0">
+        <a href="index.html#home" data-nav-id="home">Home</a>
+        <a href="index.html#latest-players" data-nav-id="latest-players">Latest Players</a>
+        <a href="index.html#calculator" data-nav-id="calculator">Pack Calculator</a>
+        <a href="index.html#principles" data-nav-id="principles">Smart Pulls</a>
+        <a href="index.html#intel" data-nav-id="intel">More Intel</a>
+        <a href="player-tracker.html" data-nav-id="player-tracker">Player Tracker</a>
+        <a href="redeem-codes.html" data-nav-id="redeem-codes">Code Notices</a>
+        <a href="coach-squad-guides.html#coach-lab" data-nav-id="coach-lab">Coach Lab</a>
+        <a href="player-instructions.html" data-nav-id="player-instructions">Player Instructions</a>
+        <a href="index.html#player-styles" data-nav-id="player-styles">Player Styles</a>
+        <a href="buying-guide.html" data-nav-id="buying-guide">Buying Guide</a>
+      </nav>
+      <button class="nav-arrow nav-arrow-right" type="button" aria-label="Scroll navigation right" data-scroll-direction="1">›</button>
+    </div>
   </header>
 
   <main>

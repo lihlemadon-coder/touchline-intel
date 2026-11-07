@@ -51,9 +51,9 @@
     {
       "id": "jose-mourinho",
       "name": "Jose Mourinho",
-      "subtitle": "Compact block · rapid counter",
-      "playstyle": "A protected central area, aggressive defensive transitions, and fast forward attacks that exploit space after a turnover.",
-      "bestFormation": "4-2-3-1",
+      "subtitle": "Long Ball · direct two-striker play",
+      "playstyle": "A compact defensive shape, direct service to the forwards, and quick support around a target striker.",
+      "bestFormation": "4-4-2",
       "playerStyleFilter": null,
       "linkUpSkill": "Double pivot → central creator → mobile striker. Win the ball with the midfield screen, release the creator early, and send wide attackers beyond the striker.",
       "playerTypesToUse": [
@@ -130,6 +130,132 @@
         { "position": "AM", "player": "Jamal Musiala", "styleId": "hole-player", "why": "Dribbles through pressure and combines in tight central spaces." },
         { "position": "AM", "player": "Kai Havertz", "styleId": "hole-player", "why": "Connects play with intelligent movement and can join the striker in the box." },
         { "position": "CF", "player": "Harry Kane", "styleId": "deep-lying-forward", "why": "Links the attack, creates for runners, and remains a reliable finisher." }
+      ]
+    },
+    {
+      "id": "deschamps",
+      "name": "Deschamps",
+      "subtitle": "Compact recovery · quick counter",
+      "playstyle": "A compact defensive shape that wins the ball and releases forward runners quickly.",
+      "bestFormation": "4-2-1-3",
+      "playerStyleFilter": null,
+      "linkUpSkill": "Destroyer DMF wins the ball, then releases the Hole Player and Goal Poacher into space.",
+      "playerTypesToUse": ["A Destroyer DMF who can press the playmaker", "Quick forwards who attack the space after a turnover"],
+      "playerTypesToAvoid": ["A midfield without a ball-winning presence", "Attackers who cannot threaten space behind"],
+      "proficiency": { "score": 100, "label": "Recommended XI fit", "note": "100/100 with the role-balanced XI below." },
+      "startingEleven": [
+        { "position": "GK", "player": "Mike Maignan", "styleId": "offensive-goalkeeper", "why": "Offers an assertive last line behind a compact defense." },
+        { "position": "RB", "player": "Jules Kounde", "styleId": "defensive-full-back", "why": "Can defend the flank and provide cover for the central defenders." },
+        { "position": "CB", "player": "Raphael Varane", "styleId": "build-up", "why": "Adds recovery pace and composed distribution from the back." },
+        { "position": "CB", "player": "William Saliba", "styleId": "build-up", "why": "Defends space confidently and starts attacks with clean passing." },
+        { "position": "LB", "player": "Theo Hernandez", "styleId": "offensive-full-back", "why": "Provides an energetic overlapping outlet on the left." },
+        { "position": "DMF", "player": "N'Golo Kante", "styleId": "destroyer-midfielder", "why": "Presses aggressively and disrupts the opposing playmaker." },
+        { "position": "CMF", "player": "Aurelien Tchouameni", "styleId": "anchor-man", "why": "Protects the center and balances the ball-winning midfielder." },
+        { "position": "AMF", "player": "Jude Bellingham", "styleId": "hole-player", "why": "Carries forward and arrives in dangerous spaces after the turnover." },
+        { "position": "LW", "player": "Kylian Mbappe", "styleId": "goal-poacher", "why": "Attacks the space behind the defense at pace." },
+        { "position": "RW", "player": "Ousmane Dembele", "styleId": "prolific-winger", "why": "Provides a direct wide outlet and can drive forward in transition." },
+        { "position": "CF", "player": "Olivier Giroud", "styleId": "target-man", "why": "Offers a forward target to hold the ball and connect counter-attacks." }
+      ]
+    },
+    {
+      "id": "hansi-flick",
+      "name": "Hansi Flick",
+      "subtitle": "Aggressive width · coordinated press",
+      "playstyle": "Use high energy and wide attacking runs to stretch opponents, with a coordinated press to regain possession.",
+      "bestFormation": "4-3-3",
+      "playerStyleFilter": null,
+      "linkUpSkill": "Wide wingers stretch the back line while a central Target Man holds up the ball for supporting runners.",
+      "playerTypesToUse": ["Energetic Offensive Full-backs", "Wide Prolific Wingers", "A central Target Man who can hold up the ball"],
+      "playerTypesToAvoid": ["Full-backs without recovery stamina", "A front line that leaves the center-forward isolated"],
+      "proficiency": { "score": 100, "label": "Recommended XI fit", "note": "100/100 with the role-balanced XI below." },
+      "startingEleven": [
+        { "position": "GK", "player": "Marc-Andre ter Stegen", "styleId": "offensive-goalkeeper", "why": "Can sweep behind an aggressive defensive line and support possession." },
+        { "position": "RB", "player": "Achraf Hakimi", "styleId": "offensive-full-back", "why": "Provides pace and forward width on the right." },
+        { "position": "CB", "player": "Antonio Rudiger", "styleId": "destroyer-defender", "why": "Steps forward aggressively to challenge and disrupt attacks." },
+        { "position": "CB", "player": "Virgil van Dijk", "styleId": "build-up", "why": "Balances the aggressive partner with calm passing and positioning." },
+        { "position": "LB", "player": "Theo Hernandez", "styleId": "offensive-full-back", "why": "Adds pace and width to the left side of the attack." },
+        { "position": "CMF", "player": "Joshua Kimmich", "styleId": "orchestrator", "why": "Keeps the ball moving and connects the defensive and attacking lines." },
+        { "position": "CMF", "player": "Leon Goretzka", "styleId": "box-to-box", "why": "Supports the press and arrives into the box from midfield." },
+        { "position": "AMF", "player": "Thomas Muller", "styleId": "hole-player", "why": "Finds space between the lines and makes timely forward runs." },
+        { "position": "LW", "player": "Vinicius Jr", "styleId": "prolific-winger", "why": "Stays wide, carries the ball, and stretches the opposition." },
+        { "position": "RW", "player": "Mohamed Salah", "styleId": "prolific-winger", "why": "Offers direct dribbling and a reliable wide goal threat." },
+        { "position": "CF", "player": "Robert Lewandowski", "styleId": "target-man", "why": "Holds a central position, competes physically, and finishes chances." }
+      ]
+    }
+  ],
+  "playerInstructions": [
+    {
+      "coachId": "xabi-alonso",
+      "coachName": "Xabi Alonso",
+      "playstyle": "Possession",
+      "formation": "4-2-1-3",
+      "rows": [
+        { "position": "GK", "styleId": "defensive-goalkeeper", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "CB x2", "styleId": "build-up", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "LB", "styleId": "offensive-full-back", "attacking": "None", "defensive": "None", "why": "Leave on None so he attacks and provides width. Do NOT set to Defensive." },
+        { "position": "RB", "styleId": "offensive-full-back", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "DMF 1", "styleId": "orchestrator", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "DMF 2", "styleId": "anchor-man", "attacking": "Defensive", "defensive": "None", "why": "Attacking: Defensive makes him stay back and protect CBs." },
+        { "position": "AMF", "styleId": "classic-no-10", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "LW", "styleId": "prolific-winger", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "RW", "styleId": "prolific-winger", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "CF", "styleId": "deep-lying-forward", "attacking": "None", "defensive": "None", "why": "Do NOT use Anchoring or Counter Target; he needs to drop." }
+      ]
+    },
+    {
+      "coachId": "fabio-capello",
+      "coachName": "Fabio Capello",
+      "playstyle": "Long Ball Counter",
+      "formation": "4-1-2-3",
+      "rows": [
+        { "position": "GK", "styleId": "defensive-goalkeeper", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "CB 1", "styleId": "destroyer-defender", "attacking": "Defensive", "defensive": "None", "why": "" },
+        { "position": "CB 2", "styleId": "build-up", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "LB", "styleId": "defensive-full-back", "attacking": "Defensive", "defensive": "None", "why": "Attacking: Defensive stops him going up." },
+        { "position": "RB", "styleId": "defensive-full-back", "attacking": "Defensive", "defensive": "None", "why": "" },
+        { "position": "DMF", "styleId": "anchor-man", "attacking": "Defensive", "defensive": "None", "why": "" },
+        { "position": "CMF", "styleId": "box-to-box", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "AMF", "styleId": "hole-player", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "LW", "styleId": "roaming-flank", "attacking": "None", "defensive": "Counter Target", "why": "Defensive: Counter Target keeps him up for a counter when we defend." },
+        { "position": "RW", "styleId": "roaming-flank", "attacking": "None", "defensive": "Counter Target", "why": "" },
+        { "position": "CF", "styleId": "goal-poacher", "attacking": "None", "defensive": "Counter Target", "why": "Defensive: Counter Target keeps the main outlet on the last man." }
+      ]
+    },
+    {
+      "coachId": "deschamps",
+      "coachName": "Deschamps",
+      "playstyle": "Quick Counter",
+      "formation": "4-2-1-3",
+      "rows": [
+        { "position": "LB / RB", "styleId": "offensive-full-back", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "DMF", "styleId": "destroyer-midfielder", "attacking": "Defensive", "defensive": "Man Marking", "why": "Man Marking assigns the Destroyer DMF to mark the opponent AMF." },
+        { "position": "CF", "styleId": "goal-poacher", "attacking": "None", "defensive": "Counter Target", "why": "" },
+        { "position": "AMF", "styleId": "hole-player", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "Other attackers", "styleId": "prolific-winger", "attacking": "None", "defensive": "None", "why": "" }
+      ]
+    },
+    {
+      "coachId": "hansi-flick",
+      "coachName": "Hansi Flick",
+      "playstyle": "Out Wide",
+      "formation": "4-3-3",
+      "rows": [
+        { "position": "LB / RB", "styleId": "offensive-full-back", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "CB (Build Up)", "styleId": "build-up", "attacking": "None", "defensive": "None", "why": "" },
+        { "position": "CB (Destroyer)", "styleId": "destroyer-defender", "attacking": "Defensive", "defensive": "None", "why": "" },
+        { "position": "CF", "styleId": "target-man", "attacking": "Anchoring", "defensive": "None", "why": "Attacking: Anchoring keeps him central to hold up and win headers for wingers." },
+        { "position": "LW / RW", "styleId": "prolific-winger", "attacking": "None", "defensive": "None", "why": "" }
+      ]
+    },
+    {
+      "coachId": "jose-mourinho",
+      "coachName": "Jose Mourinho",
+      "playstyle": "Long Ball",
+      "formation": "4-4-2",
+      "rows": [
+        { "position": "CF 1", "styleId": "target-man", "attacking": "Anchoring", "defensive": "None", "why": "" },
+        { "position": "CF 2", "styleId": "goal-poacher", "attacking": "None", "defensive": "Counter Target", "why": "" },
+        { "position": "LB / RB", "styleId": "defensive-full-back", "attacking": "Defensive", "defensive": "None", "why": "" }
       ]
     }
   ],

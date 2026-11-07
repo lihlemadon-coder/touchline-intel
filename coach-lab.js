@@ -126,23 +126,34 @@ if (coachList && coachProfile) {
       data.coaches.forEach(validateCoach);
 
       coachList.replaceChildren();
-      data.coaches.forEach((coach, index) => {
+      let selectedCoachId = null;
+      try {
+        selectedCoachId = localStorage.getItem('touchline:selectedCoach');
+      } catch (error) {
+        console.error('Unable to read the saved coach selection:', error);
+      }
+      const activeCoach = data.coaches.find(coach => coach.id === selectedCoachId) || data.coaches[0];
+      data.coaches.forEach(coach => {
         const button = document.createElement('button');
         button.className = 'coach-option';
         button.type = 'button';
         button.textContent = coach.name;
-        button.setAttribute('aria-pressed', String(index === 0));
+        button.setAttribute('aria-pressed', String(coach.id === activeCoach.id));
         button.addEventListener('click', () => {
           coachList.querySelectorAll('.coach-option').forEach(option => {
             option.setAttribute('aria-pressed', String(option === button));
           });
+          try {
+            localStorage.setItem('touchline:selectedCoach', coach.id);
+          } catch (error) {
+            console.error('Unable to save the coach selection:', error);
+          }
           renderCoach(coach);
         });
         coachList.append(button);
       });
 
-      const firstCoach = data.coaches[0];
-      renderCoach(firstCoach);
+      renderCoach(activeCoach);
     })
     .catch(error => {
       console.error('Unable to load Coach Lab profiles:', error);

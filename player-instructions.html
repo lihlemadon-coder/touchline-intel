@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="eFootball Mobile individual player instruction setups with separate attacking and defensive instructions." />
+  <meta name="theme-color" content="#101812" />
+  <title>Player Instructions | Touchline Intel</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="site-nav.js" defer></script>
+  <script src="player-instructions.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-top-row">
+      <a class="brand" href="index.html#home" aria-label="Touchline Intel home">
+        <span class="brand-mark" aria-hidden="true">TI</span>
+        <span>TOUCHLINE <b>INTEL</b></span>
+      </a>
+      <a class="header-cta" href="index.html#calculator">Check the odds <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="nav-frame">
+      <button class="nav-arrow nav-arrow-left" type="button" aria-label="Scroll navigation left" data-scroll-direction="-1">‹</button>
+      <nav class="site-nav" aria-label="Main navigation" tabindex="0">
+        <a href="index.html#home" data-nav-id="home">Home</a>
+        <a href="index.html#latest-players" data-nav-id="latest-players">Latest Players</a>
+        <a href="index.html#calculator" data-nav-id="calculator">Pack Calculator</a>
+        <a href="index.html#principles" data-nav-id="principles">Smart Pulls</a>
+        <a href="index.html#intel" data-nav-id="intel">More Intel</a>
+        <a href="player-tracker.html" data-nav-id="player-tracker">Player Tracker</a>
+        <a href="redeem-codes.html" data-nav-id="redeem-codes">Code Notices</a>
+        <a href="coach-squad-guides.html#coach-lab" data-nav-id="coach-lab">Coach Lab</a>
+        <a href="player-instructions.html" data-nav-id="player-instructions">Player Instructions</a>
+        <a href="index.html#player-styles" data-nav-id="player-styles">Player Styles</a>
+        <a href="buying-guide.html" data-nav-id="buying-guide">Buying Guide</a>
+      </nav>
+      <button class="nav-arrow nav-arrow-right" type="button" aria-label="Scroll navigation right" data-scroll-direction="1">›</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="subpage-hero">
+      <p class="eyebrow"><span class="live-dot"></span> Tactical board / eFootball Mobile</p>
+      <h1>Player<br /><span>Instructions.</span></h1>
+      <p class="intro">Choose a coach to view a role-by-role setup. Attacking and Defensive instructions are separate categories—Counter Target is a Defensive instruction.</p>
+      <p class="verification-note">Instruction recommendations are a guide. Confirm the available options in your current in-game tactics menu.</p>
+    </section>
+
+    <section class="content-section instruction-section">
+      <div class="instruction-rules">
+        <p class="eyebrow">Instruction categories</p>
+        <h2>Know which side of the ball.</h2>
+        <div class="instruction-rule-grid">
+          <article class="instruction-rule">
+            <h3>Attacking instructions</h3>
+            <p><strong>Defensive</strong> = player stays back when we attack; use for DMF and Defensive Full-backs.</p>
+            <p><strong>Anchoring</strong> = player stays in his position; use only for Target Man.</p>
+            <p><strong>None</strong> = player plays normal; use for attacking full-backs and wingers who need to go forward.</p>
+          </article>
+          <article class="instruction-rule">
+            <h3>Defensive instructions</h3>
+            <p><strong>Counter Target</strong> = player stays up front when we defend, ready for counter; the general guideline is max 2 attackers.</p>
+            <p><strong>Man Marking</strong> = assign to Destroyer DMF to mark opponent's playmaker.</p>
+            <p><strong>None</strong> = no individual defensive instruction.</p>
+          </article>
+        </div>
+        <p class="instruction-exception"><strong>Setup note:</strong> Fabio Capello's requested setup below assigns Counter Target to LW, RW, and CF (three players), following that coach-specific setup despite the general max-2 guideline.</p>
+      </div>
+
+      <section class="instruction-lab" aria-labelledby="instructionLabTitle">
+        <div class="instruction-toolbar">
+          <div>
+            <p class="eyebrow">Shared coach selection</p>
+            <h2 id="instructionLabTitle">Starting instructions</h2>
+          </div>
+          <label for="instructionCoach">Selected coach
+            <select id="instructionCoach" aria-label="Select coach">
+              <option>Loading coaches…</option>
+            </select>
+          </label>
+        </div>
+        <div id="instructionContent" aria-live="polite" aria-busy="true">
+          <p class="lab-loading">Loading instructions…</p>
+        </div>
+        <div class="copy-row">
+          <button class="copy-setup-button" id="copySetupButton" type="button" disabled>Copy Setup</button>
+          <p id="copyStatus" aria-live="polite">Select a coach to view their instructions.</p>
+        </div>
+      </section>
+      <a class="text-link" href="coach-squad-guides.html#coach-lab">← Back to Coach Lab</a>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="index.html#home" aria-label="Touchline Intel home">
+      <span class="brand-mark" aria-hidden="true">TI</span>
+      <span>TOUCHLINE <b>INTEL</b></span>
+    </a>
+    <p>Independent eFootball Mobile fan guide. Always verify offers and rates in-game.</p>
+    <a class="back-top" href="#">Back to top ↑</a>
+  </footer>
+</body>
+</html>

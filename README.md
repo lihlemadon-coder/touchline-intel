@@ -26,6 +26,8 @@ The site is independent and is not affiliated with Konami. It does not automate 
 - The Coach Lab loads coach profiles and suggested lineups from `data.json`; add another object to the `coaches` array to add a coach.
 - `data.json` also contains the Player Styles catalog, player style IDs, and Latest Players list. Add styles to `playerStyles`, add player entries with a matching `styleId` to `players`, and list their IDs in `latestPlayers` to feature them on the homepage.
 - Coach Lab keeps each suggested starting XI intact and displays a separate style-filtered shortlist for Fabio Capello and Xabi Alonso. Jose Mourinho currently has no coach-specific style filter.
+- `player-instructions.html` loads the individual instruction setups in `data.json`. Coach selection is shared between Coach Lab and Player Instructions in the same browser.
+- The site header uses a sticky, horizontally scrolling, scrollbar-hidden navigation with snap points, scroll cues, arrows, and active-tab centering.
 
 Release and code information is intentionally not guessed. Check the linked official sources and the in-game News for current details.
 
@@ -34,3 +36,5 @@ Release and code information is intentionally not guessed. Check the linked offi
 Because Coach Lab loads `data.json` with `fetch`, open the site through a local web server instead of opening the HTML files directly. From this folder, run `py -m http.server 8000` and visit `http://localhost:8000/coach-squad-guides.html`.
 
 The homepage Player Styles Guide and Latest Players cards use the same JSON file and also require a local web server.
+
+Player Instructions and Coach Lab also load `data.json`, so use the local web server to try the shared coach selection and Copy Setup feature.
