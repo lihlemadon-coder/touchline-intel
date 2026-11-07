@@ -1,0 +1,219 @@
+{
+  "coaches": [
+    {
+      "id": "fabio-capello",
+      "name": "Fabio Capello",
+      "subtitle": "Compact control · decisive transitions",
+      "playstyle": "Disciplined defending with a compact shape, patient control when needed, and quick, direct attacks into space.",
+      "bestFormation": "4-4-2",
+      "playerStyleFilter": [
+        "goal-poacher",
+        "target-man",
+        "box-to-box",
+        "anchor-man",
+        "destroyer-midfielder",
+        "destroyer-defender",
+        "defensive-full-back",
+        "defensive-goalkeeper"
+      ],
+      "linkUpSkill": "Midfield screen → wide outlet → two-striker combination. Keep the two central midfielders connected to the forwards and use the wide midfielders to stretch the pitch.",
+      "playerTypesToUse": [
+        "Positionally disciplined centre-backs who defend the box",
+        "A ball-winning midfielder paired with a composed passer",
+        "Hard-working wide midfielders who track back and deliver",
+        "A complementary striker pair: one runner and one link player"
+      ],
+      "playerTypesToAvoid": [
+        "Slow defenders left isolated in a very high line",
+        "A midfield with no defensive work rate or recovery",
+        "Two forwards who both want to occupy the same space",
+        "Wide players who offer no support when defending"
+      ],
+      "proficiency": {
+        "score": 100,
+        "label": "Recommended XI fit",
+        "note": "100/100 with the role-balanced XI below."
+      },
+      "startingEleven": [
+        { "position": "GK", "player": "Gianluigi Buffon", "styleId": "defensive-goalkeeper", "why": "A commanding, dependable goalkeeper suited to protecting a well-organized defense." },
+        { "position": "RB", "player": "Cafu", "styleId": "offensive-full-back", "why": "Adds stamina and forward support while giving the right flank an outlet." },
+        { "position": "CB", "player": "Alessandro Nesta", "styleId": "build-up", "why": "Reads danger early and anchors the middle with calm positioning." },
+        { "position": "CB", "player": "Fabio Cannavaro", "styleId": "destroyer-defender", "why": "Aggressive anticipation and recovery complement a strong central partner." },
+        { "position": "LB", "player": "Paolo Maldini", "styleId": "defensive-full-back", "why": "Defensive reliability and composure keep the back line balanced." },
+        { "position": "RM", "player": "David Beckham", "styleId": "cross-specialist", "why": "Provides delivery and switches of play from a disciplined wide role." },
+        { "position": "CM", "player": "Gennaro Gattuso", "styleId": "destroyer-midfielder", "why": "Wins duels and protects the defense when teammates move forward." },
+        { "position": "CM", "player": "Andrea Pirlo", "styleId": "orchestrator", "why": "Supplies the calm distribution and forward passing for quick transitions." },
+        { "position": "LM", "player": "Pavel Nedved", "styleId": "box-to-box", "why": "Brings work rate, carrying, and a direct threat from the left." },
+        { "position": "CF", "player": "Andriy Shevchenko", "styleId": "goal-poacher", "why": "Attacks space behind the line and offers a decisive finishing threat." },
+        { "position": "CF", "player": "Francesco Totti", "styleId": "deep-lying-forward", "why": "Drops between lines to connect midfield with the leading runner." }
+      ]
+    },
+    {
+      "id": "jose-mourinho",
+      "name": "Jose Mourinho",
+      "subtitle": "Compact block · rapid counter",
+      "playstyle": "A protected central area, aggressive defensive transitions, and fast forward attacks that exploit space after a turnover.",
+      "bestFormation": "4-2-3-1",
+      "playerStyleFilter": null,
+      "linkUpSkill": "Double pivot → central creator → mobile striker. Win the ball with the midfield screen, release the creator early, and send wide attackers beyond the striker.",
+      "playerTypesToUse": [
+        "Centre-backs strong in duels and comfortable defending the box",
+        "A screening midfielder alongside a mobile box-to-box partner",
+        "Wide forwards with pace, direct dribbling, and recovery effort",
+        "A strong centre-forward who can hold up play and finish"
+      ],
+      "playerTypesToAvoid": [
+        "A high defensive line without pace to cover space behind",
+        "A lightweight midfield that cannot protect the centre",
+        "Full-backs who both advance without cover",
+        "A front line with no runner to threaten counter-attacks"
+      ],
+      "proficiency": {
+        "score": 100,
+        "label": "Recommended XI fit",
+        "note": "100/100 with the role-balanced XI below."
+      },
+      "startingEleven": [
+        { "position": "GK", "player": "Petr Cech", "styleId": "defensive-goalkeeper", "why": "Offers dependable shot-stopping behind a defense built to protect the box." },
+        { "position": "RB", "player": "Maicon", "styleId": "offensive-full-back", "why": "Combines physical defending with a powerful overlapping outlet when space opens." },
+        { "position": "CB", "player": "John Terry", "styleId": "build-up", "why": "Organizes the line and brings strength and commitment in central duels." },
+        { "position": "CB", "player": "Ricardo Carvalho", "styleId": "build-up", "why": "Reads the game well and complements a more physical defensive partner." },
+        { "position": "LB", "player": "Ashley Cole", "styleId": "defensive-full-back", "why": "Provides recovery pace and one-versus-one defending on the left." },
+        { "position": "DM", "player": "Claude Makelele", "styleId": "anchor-man", "why": "Shields the back four and helps the team stay compact through the middle." },
+        { "position": "CM", "player": "Frank Lampard", "styleId": "hole-player", "why": "Turns regained possession into forward runs and a goal threat from midfield." },
+        { "position": "RW", "player": "Cristiano Ronaldo", "styleId": "prolific-winger", "why": "Attacks open space at speed and can finish transitions from the flank." },
+        { "position": "AM", "player": "Wesley Sneijder", "styleId": "classic-no-10", "why": "Connects the pivot to the forwards with quick, incisive passing." },
+        { "position": "LW", "player": "Arjen Robben", "styleId": "roaming-flank", "why": "Carries the ball directly into space and creates a threat cutting in." },
+        { "position": "CF", "player": "Didier Drogba", "styleId": "target-man", "why": "Holds up direct passes, occupies defenders, and leads the counter-attacking line." }
+      ]
+    },
+    {
+      "id": "xabi-alonso",
+      "name": "Xabi Alonso",
+      "subtitle": "Structured possession · fluid pressing",
+      "playstyle": "Build from the back with purposeful passing, create overloads between the lines, and press as a coordinated unit after losing possession.",
+      "bestFormation": "3-4-2-1",
+      "playerStyleFilter": [
+        "deep-lying-forward",
+        "classic-no-10",
+        "orchestrator",
+        "build-up",
+        "offensive-full-back"
+      ],
+      "linkUpSkill": "Back three → deep playmaker → two inside creators → high wing-backs. Use central triangles to draw pressure, then switch quickly to the free flank.",
+      "playerTypesToUse": [
+        "Centre-backs comfortable passing forward and defending large spaces",
+        "A press-resistant deep midfielder who can change the point of attack",
+        "Energetic wing-backs with stamina for both phases",
+        "Inside forwards who combine between lines and arrive in the box"
+      ],
+      "playerTypesToAvoid": [
+        "A back line uncomfortable defending space behind it",
+        "A midfield that lacks close control under pressure",
+        "Wing-backs without the stamina to recover",
+        "Attackers who stay disconnected from the build-up"
+      ],
+      "proficiency": {
+        "score": 100,
+        "label": "Recommended XI fit",
+        "note": "100/100 with the role-balanced XI below."
+      },
+      "startingEleven": [
+        { "position": "GK", "player": "Alisson Becker", "styleId": "offensive-goalkeeper", "why": "Provides a secure last line and can support short build-up under pressure." },
+        { "position": "RCB", "player": "Jonathan Tah", "styleId": "build-up", "why": "Adds strength and composure to the center of a three-player defensive line." },
+        { "position": "CB", "player": "Virgil van Dijk", "styleId": "build-up", "why": "Brings aerial strength, composure, and range to the center of the back three." },
+        { "position": "LCB", "player": "Piero Hincapie", "styleId": "build-up", "why": "Offers mobility and left-sided progression to balance the defensive trio." },
+        { "position": "RWB", "player": "Jeremie Frimpong", "styleId": "offensive-full-back", "why": "Provides aggressive width, pace, and a direct option to advance down the right." },
+        { "position": "CM", "player": "Granit Xhaka", "styleId": "orchestrator", "why": "Sets the tempo from deep and switches play to release the advanced wide players." },
+        { "position": "CM", "player": "Florian Wirtz", "styleId": "classic-no-10", "why": "Finds pockets between the lines and links midfield combinations to the attack." },
+        { "position": "LWB", "player": "Alejandro Grimaldo", "styleId": "offensive-full-back", "why": "Adds width, delivery, and intelligent movement on the left." },
+        { "position": "AM", "player": "Jamal Musiala", "styleId": "hole-player", "why": "Dribbles through pressure and combines in tight central spaces." },
+        { "position": "AM", "player": "Kai Havertz", "styleId": "hole-player", "why": "Connects play with intelligent movement and can join the striker in the box." },
+        { "position": "CF", "player": "Harry Kane", "styleId": "deep-lying-forward", "why": "Links the attack, creates for runners, and remains a reliable finisher." }
+      ]
+    }
+  ],
+  "playerStyles": [
+    { "id": "goal-poacher", "name": "Goal Poacher", "group": "Forwards (CF / SS)", "description": "Makes runs behind defence, best for counter.", "bestFor": "Long Ball Counter / Quick Counter", "examples": "Mbappe, Haaland, Eto'o", "tone": "green" },
+    { "id": "fox-in-the-box", "name": "Fox in the Box", "group": "Forwards (CF / SS)", "description": "Stays in box, great finisher.", "bestFor": "Cross / Possession", "examples": "Inzaghi, Lewandowski", "tone": "amber" },
+    { "id": "target-man", "name": "Target Man", "group": "Forwards (CF / SS)", "description": "Holds ball up, wins headers.", "bestFor": "Long Ball", "examples": "Drogba, Haaland, Giroud", "tone": "amber" },
+    { "id": "deep-lying-forward", "name": "Deep-Lying Forward", "group": "Forwards (CF / SS)", "description": "Drops deep to link play.", "bestFor": "Possession", "examples": "Kane, Benzema", "tone": "cyan" },
+    { "id": "creative-playmaker", "name": "Creative Playmaker", "group": "Forwards (CF / SS)", "description": "Drops to create.", "bestFor": null, "examples": "Messi", "tone": "violet" },
+    { "id": "hole-player", "name": "Hole Player", "group": "Midfielders (AMF / CMF / DMF)", "description": "Runs into box late.", "bestFor": "Quick Counter", "examples": "Bellingham, Musiala", "tone": "green" },
+    { "id": "classic-no-10", "name": "Classic No.10", "group": "Midfielders (AMF / CMF / DMF)", "description": "Stays in hole, passes.", "bestFor": "Possession", "examples": "Kaka, Ozil", "tone": "violet" },
+    { "id": "box-to-box", "name": "Box-to-Box", "group": "Midfielders (AMF / CMF / DMF)", "description": "Runs all over.", "bestFor": "any counter", "examples": "Yaya Toure, Bellingham, Valverde", "tone": "green" },
+    { "id": "anchor-man", "name": "Anchor Man", "group": "Midfielders (AMF / CMF / DMF)", "description": "Stays in front of defence.", "bestFor": "Long Ball Counter", "examples": "Rodri, Casemiro", "tone": "blue" },
+    { "id": "destroyer-midfielder", "name": "Destroyer", "group": "Midfielders (AMF / CMF / DMF)", "description": "Aggressive tackler.", "bestFor": "Quick Counter", "examples": "Kante, Gattuso", "tone": "red" },
+    { "id": "orchestrator", "name": "Orchestrator", "group": "Midfielders (AMF / CMF / DMF)", "description": "Deep playmaker.", "bestFor": "Possession", "examples": "Pirlo, Xavi, Toni Kroos", "tone": "cyan" },
+    { "id": "roaming-flank", "name": "Roaming Flank", "group": "Midfielders (AMF / CMF / DMF)", "description": "Cuts inside from wing.", "bestFor": null, "examples": "Neymar", "tone": "violet" },
+    { "id": "prolific-winger", "name": "Prolific Winger", "group": "Midfielders (AMF / CMF / DMF)", "description": "Stays wide, dribbles.", "bestFor": null, "examples": "Vinicius, Salah", "tone": "green" },
+    { "id": "cross-specialist", "name": "Cross Specialist", "group": "Midfielders (AMF / CMF / DMF)", "description": "Stays wide, crosses.", "bestFor": null, "examples": "Beckham", "tone": "amber" },
+    { "id": "build-up", "name": "Build Up", "group": "Defenders (CB / LB / RB)", "description": "CB who passes out from back.", "bestFor": "Possession", "examples": "Van Dijk, Beckenbauer", "tone": "blue" },
+    { "id": "destroyer-defender", "name": "Destroyer", "group": "Defenders (CB / LB / RB)", "description": "CB who is aggressive, steps up.", "bestFor": "Counter", "examples": "Rudiger, Pepe", "tone": "red" },
+    { "id": "extra-frontman", "name": "Extra Frontman", "group": "Defenders (CB / LB / RB)", "description": "CB who pushes up.", "bestFor": null, "examples": "Araujo", "tone": "red" },
+    { "id": "offensive-full-back", "name": "Offensive Full-back", "group": "Defenders (CB / LB / RB)", "description": "Attacks up wing.", "bestFor": null, "examples": "Theo Hernandez, Alexander-Arnold", "tone": "green" },
+    { "id": "defensive-full-back", "name": "Defensive Full-back", "group": "Defenders (CB / LB / RB)", "description": "Stays back.", "bestFor": "Long Ball Counter", "examples": "Walker, Kounde", "tone": "blue" },
+    { "id": "full-back-finisher", "name": "Full-back Finisher", "group": "Defenders (CB / LB / RB)", "description": "Cuts inside to shoot.", "bestFor": null, "examples": "Cancelo", "tone": "violet" },
+    { "id": "offensive-goalkeeper", "name": "Offensive Goalkeeper", "group": "Goalkeepers", "description": "Comes out, sweeps.", "bestFor": null, "examples": "Neuer, Ederson", "tone": "cyan" },
+    { "id": "defensive-goalkeeper", "name": "Defensive Goalkeeper", "group": "Goalkeepers", "description": "Stays on line.", "bestFor": null, "examples": "Courtois, Donnarumma", "tone": "blue" }
+  ],
+  "players": [
+    { "id": "mbappe-goal-poacher", "name": "Mbappe", "position": "CF", "styleId": "goal-poacher" },
+    { "id": "haaland-goal-poacher", "name": "Haaland", "position": "CF", "styleId": "goal-poacher" },
+    { "id": "eto-o", "name": "Eto'o", "position": "CF", "styleId": "goal-poacher" },
+    { "id": "inzaghi", "name": "Inzaghi", "position": "CF", "styleId": "fox-in-the-box" },
+    { "id": "lewandowski", "name": "Lewandowski", "position": "CF", "styleId": "fox-in-the-box" },
+    { "id": "drogba-target-man", "name": "Drogba", "position": "CF", "styleId": "target-man" },
+    { "id": "haaland-target-man", "name": "Haaland", "position": "CF", "styleId": "target-man" },
+    { "id": "giroud", "name": "Giroud", "position": "CF", "styleId": "target-man" },
+    { "id": "kane-deep-lying-forward", "name": "Kane", "position": "CF", "styleId": "deep-lying-forward" },
+    { "id": "benzema", "name": "Benzema", "position": "CF", "styleId": "deep-lying-forward" },
+    { "id": "messi", "name": "Messi", "position": "SS", "styleId": "creative-playmaker" },
+    { "id": "bellingham-hole-player", "name": "Bellingham", "position": "CMF", "styleId": "hole-player" },
+    { "id": "musiala-hole-player", "name": "Musiala", "position": "AMF", "styleId": "hole-player" },
+    { "id": "kaka", "name": "Kaka", "position": "AMF", "styleId": "classic-no-10" },
+    { "id": "ozil", "name": "Ozil", "position": "AMF", "styleId": "classic-no-10" },
+    { "id": "yaya-toure", "name": "Yaya Toure", "position": "CMF", "styleId": "box-to-box" },
+    { "id": "bellingham-box-to-box", "name": "Bellingham", "position": "CMF", "styleId": "box-to-box" },
+    { "id": "valverde", "name": "Valverde", "position": "CMF", "styleId": "box-to-box" },
+    { "id": "rodri", "name": "Rodri", "position": "DMF", "styleId": "anchor-man" },
+    { "id": "casemiro", "name": "Casemiro", "position": "DMF", "styleId": "anchor-man" },
+    { "id": "kante", "name": "Kante", "position": "DMF", "styleId": "destroyer-midfielder" },
+    { "id": "gattuso-destroyer", "name": "Gattuso", "position": "CMF", "styleId": "destroyer-midfielder" },
+    { "id": "pirlo-orchestrator", "name": "Pirlo", "position": "CMF", "styleId": "orchestrator" },
+    { "id": "xavi", "name": "Xavi", "position": "CMF", "styleId": "orchestrator" },
+    { "id": "toni-kroos", "name": "Toni Kroos", "position": "CMF", "styleId": "orchestrator" },
+    { "id": "neymar", "name": "Neymar", "position": "LWF", "styleId": "roaming-flank" },
+    { "id": "vinicius", "name": "Vinicius", "position": "LWF", "styleId": "prolific-winger" },
+    { "id": "salah", "name": "Salah", "position": "RWF", "styleId": "prolific-winger" },
+    { "id": "beckham-cross-specialist", "name": "Beckham", "position": "RMF", "styleId": "cross-specialist" },
+    { "id": "van-dijk", "name": "Van Dijk", "position": "CB", "styleId": "build-up" },
+    { "id": "beckenbauer", "name": "Beckenbauer", "position": "CB", "styleId": "build-up" },
+    { "id": "rudiger", "name": "Rudiger", "position": "CB", "styleId": "destroyer-defender" },
+    { "id": "pepe", "name": "Pepe", "position": "CB", "styleId": "destroyer-defender" },
+    { "id": "araujo", "name": "Araujo", "position": "CB", "styleId": "extra-frontman" },
+    { "id": "theo-hernandez", "name": "Theo Hernandez", "position": "LB", "styleId": "offensive-full-back" },
+    { "id": "alexander-arnold", "name": "Alexander-Arnold", "position": "RB", "styleId": "offensive-full-back" },
+    { "id": "walker", "name": "Walker", "position": "RB", "styleId": "defensive-full-back" },
+    { "id": "kounde", "name": "Kounde", "position": "RB", "styleId": "defensive-full-back" },
+    { "id": "cancelo", "name": "Cancelo", "position": "RB", "styleId": "full-back-finisher" },
+    { "id": "neuer", "name": "Neuer", "position": "GK", "styleId": "offensive-goalkeeper" },
+    { "id": "ederson", "name": "Ederson", "position": "GK", "styleId": "offensive-goalkeeper" },
+    { "id": "courtois", "name": "Courtois", "position": "GK", "styleId": "defensive-goalkeeper" },
+    { "id": "donnarumma", "name": "Donnarumma", "position": "GK", "styleId": "defensive-goalkeeper" }
+  ],
+  "latestPlayers": [
+    "mbappe-goal-poacher",
+    "inzaghi",
+    "drogba-target-man",
+    "kane-deep-lying-forward",
+    "messi",
+    "bellingham-hole-player",
+    "rodri",
+    "pirlo-orchestrator",
+    "salah",
+    "beckham-cross-specialist",
+    "van-dijk",
+    "neuer"
+  ]
+}

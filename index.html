@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Independent eFootball Mobile pack-odds and coin-budget guide. Make informed choices, without promises of guaranteed pulls." />
+  <meta name="theme-color" content="#101812" />
+  <title>Touchline Intel | eFootball Mobile guide</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+  <script src="player-styles.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Touchline Intel home">
+      <span class="brand-mark" aria-hidden="true">TI</span>
+      <span>TOUCHLINE <b>INTEL</b></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#calculator">Pack calculator</a>
+      <a href="#principles">Smart pulls</a>
+      <a href="#latest-players">Latest players</a>
+      <a href="#player-styles">Player styles</a>
+      <a href="#intel">More intel</a>
+      <a href="player-tracker.html">Player tracker</a>
+      <a href="redeem-codes.html">Code notices</a>
+      <a href="coach-squad-guides.html">Coach &amp; squad guides</a>
+    </nav>
+    <a class="header-cta" href="#calculator">Check the odds <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> eFootball Mobile · independent guide</p>
+        <h1>Play the odds.<br /><span>Not the hype.</span></h1>
+        <p class="intro">A clear-eyed guide to pack chances and coin limits. Run the numbers before you spend, and keep every pull in perspective.</p>
+        <a class="hero-link" href="#calculator">Open the pack calculator <span aria-hidden="true">↓</span></a>
+        <p class="verification-note">Player packs, rates and offers change. Always check the current in-game details.</p>
+      </div>
+      <div class="hero-card" aria-label="Key reminder">
+        <div class="pitch-lines" aria-hidden="true"></div>
+        <p class="hero-card-label">THE ONE RULE</p>
+        <p class="hero-card-quote">Set your limit<br />before kickoff.</p>
+        <div class="hero-card-foot"><span>01</span><span>Good decisions beat “secret” methods.</span></div>
+      </div>
+    </section>
+
+    <section class="calculator-section" id="calculator">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Your coins. Your call.</p>
+          <h2>Pack chance calculator</h2>
+        </div>
+        <p>Enter the in-game target-player rate and the price of one 10-draw pack. The estimate assumes each draw is independent and the rate stays the same.</p>
+      </div>
+
+      <div class="calculator-layout">
+        <form class="calculator-form" id="oddsForm">
+          <label for="budget">Coin budget</label>
+          <div class="input-wrap"><span aria-hidden="true">◈</span><input id="budget" name="budget" type="number" min="0" max="1000000" step="1" inputmode="numeric" placeholder="e.g. 1500" required /><span class="unit">coins</span></div>
+
+          <label for="packCost">Cost per 10-draw pack</label>
+          <div class="input-wrap"><span aria-hidden="true">◈</span><input id="packCost" name="packCost" type="number" min="1" max="1000000" step="1" inputmode="numeric" placeholder="Enter in-game pack cost" required /><span class="unit">coins</span></div>
+
+          <label for="targetChance">Target player's in-game rate per draw</label>
+          <div class="input-wrap"><span aria-hidden="true">%</span><input id="targetChance" name="targetChance" type="number" min="0" max="100" step="any" inputmode="decimal" placeholder="Enter the displayed rate" required /><span class="unit">percent</span></div>
+
+          <button type="submit">Calculate my chances <span aria-hidden="true">→</span></button>
+          <button class="reset-button" type="reset">Clear values</button>
+        </form>
+
+        <section class="results" id="results" aria-labelledby="resultsTitle" aria-live="polite">
+          <div class="results-top"><span class="result-icon" aria-hidden="true">◎</span><span class="result-kicker">YOUR ESTIMATE</span></div>
+          <h3 id="resultsTitle">Numbers, not guarantees.</h3>
+          <p class="results-hint" id="resultsHint">Enter the target player's in-game rate per single draw, not the probability of getting any featured player.</p>
+          <div class="result-grid">
+            <div class="result-item"><span>10-draw packs within budget</span><strong id="packsResult">—</strong></div>
+            <div class="result-item"><span>Total draws within budget</span><strong id="drawsResult">—</strong></div>
+            <div class="result-item"><span>Chance within budget</span><strong id="chanceResult">—</strong></div>
+            <div class="result-item"><span>Expected 10-draw packs*</span><strong id="expectedPacksResult">—</strong></div>
+            <div class="result-item"><span>Expected coin cost*</span><strong id="expectedCostResult">—</strong></div>
+          </div>
+          <p class="formula-note">*Long-run averages, not a promise or a recommended spend. A 10-draw pack can still miss the target.</p>
+        </section>
+      </div>
+      <p class="source-note"><strong>Source check:</strong> Copy the target player's per-draw rate and 10-draw pack cost from the current in-game pack details. Community reports can be incomplete or wrong.</p>
+    </section>
+
+    <section class="principles-section" id="principles">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Keep your game yours</p>
+          <h2>Smart-pull principles</h2>
+        </div>
+        <p>No hidden timing trick can turn an uncertain draw into a sure thing. Use a plan you can stick to.</p>
+      </div>
+      <div class="principle-grid">
+        <article class="principle-card"><span>01 / LIMIT</span><h3>Choose a hard budget</h3><p>Decide how many coins you are willing to use before opening a pack. Stop when you reach that limit.</p></article>
+        <article class="principle-card"><span>02 / ODDS</span><h3>Read the exact rate</h3><p>Check whether the figure applies to your target player or to the pack as a whole. They are not interchangeable.</p></article>
+        <article class="principle-card"><span>03 / COACH</span><h3>Separate tactics from pulls</h3><p>A coach can affect your squad's tactics and playstyle. There is no verified evidence that owning one improves player-pull odds.</p></article>
+      </div>
+      <p class="disclaimer">Touchline Intel is an independent fan guide, not affiliated with Konami. It does not automate purchases, bypass game systems, or guarantee results. Spend responsibly.</p>
+    </section>
+
+    <section class="players-section" id="latest-players">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Player database / style examples</p>
+          <h2>Latest Players</h2>
+        </div>
+        <p>Example players from the style catalog. Player cards and styles can vary between versions in-game; verify the style on the card you own.</p>
+      </div>
+      <div class="player-card-grid" id="latestPlayerGrid" aria-live="polite">
+        <p class="lab-loading">Loading player cards…</p>
+      </div>
+    </section>
+
+    <section class="player-styles-section" id="player-styles">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">In-game terminology / reference</p>
+          <h2>Player Styles Guide</h2>
+        </div>
+        <p>Review the supplied style descriptions and examples by position group, then use the Coach Lab shortlist to find styles that fit a coach's tactical plan.</p>
+      </div>
+      <div class="style-guide-grid" id="playerStyleGuide" aria-live="polite">
+        <p class="lab-loading">Loading the player style guide…</p>
+      </div>
+      <a class="panel-link" href="coach-squad-guides.html#coach-lab">Explore style-fit players in Coach Lab <span aria-hidden="true">↗</span></a>
+    </section>
+
+    <section class="intel-section" id="intel">
+      <div>
+        <p class="eyebrow">More matchday intel</p>
+        <h2>Plan your next<br />move.</h2>
+        <p class="intel-intro">Track official player announcements, check code notices safely, and build a squad around the way you play.</p>
+      </div>
+      <div class="intel-grid">
+        <a class="intel-card" href="player-tracker.html">
+          <span class="intel-number">01 / TRACK</span>
+          <h3>Player release tracker</h3>
+          <p>Follow confirmed announcements and learn how to separate them from rumors.</p>
+          <span class="card-link">Open tracker <span aria-hidden="true">↗</span></span>
+        </a>
+        <a class="intel-card" href="redeem-codes.html">
+          <span class="intel-number">02 / VERIFY</span>
+          <h3>Official code notices</h3>
+          <p>Check for verified notices and use only official redemption instructions.</p>
+          <span class="card-link">Check notices <span aria-hidden="true">↗</span></span>
+        </a>
+        <a class="intel-card" href="coach-squad-guides.html">
+          <span class="intel-number">03 / BUILD</span>
+          <h3>Coach &amp; squad guides</h3>
+          <p>Understand playstyles, roles, and the balance behind a reliable lineup.</p>
+          <span class="card-link">Read the guides <span aria-hidden="true">↗</span></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#home" aria-label="Touchline Intel home">
+      <span class="brand-mark" aria-hidden="true">TI</span>
+      <span>TOUCHLINE <b>INTEL</b></span>
+    </a>
+    <p>Independent eFootball Mobile fan guide. Always verify offers and rates in-game.</p>
+    <a class="back-top" href="#home">Back to top ↑</a>
+  </footer>
+</body>
+</html>
