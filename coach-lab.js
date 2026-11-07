@@ -1,10 +1,13 @@
 const coachList = document.getElementById('coachList');
 const coachProfile = document.getElementById('coachProfile');
+const coachSearch = document.getElementById('coachSearch');
+const coachSearchStatus = document.getElementById('coachSearchStatus');
 
-if (coachList && coachProfile) {
-  const allowedBadgeTones = new Set(['green', 'red', 'blue', 'amber', 'cyan', 'violet']);
-  let styleById = new Map();
-  let players = [];
+if (coachList && coachProfile && coachSearch && coachSearchStatus) {
+  const playstyles = ['Quick Counter', 'Possession', 'Long Ball Counter', 'Out Wide', 'Long Ball', 'Overload'];
+  let coaches = [];
+  let versions = [];
+  let selectedCoachId = null;
 
   const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({
     '&': '&amp;',
@@ -14,149 +17,139 @@ if (coachList && coachProfile) {
     "'": '&#39;'
   })[character]);
 
-  const styleBadge = style => {
-    if (!style || !allowedBadgeTones.has(style.tone)) {
-      throw new Error('A player is missing a valid player style.');
-    }
-    return `<span class="player-style-badge tone-${style.tone}">${escapeHtml(style.name)}</span>`;
+  const displayValue = (value, suffix = '') =>
+    value === null || value === undefined || value === '' ? 'Not in database yet — coming soon' : `${escapeHtml(value)}${suffix}`;
+
+  const renderVersion = version => {
+    const affinities = playstyles.map(style => {
+      const value = version.affinities && version.affinities[style];
+      return `<article class="profile-fact"><span>${escapeHtml(style.toUpperCase())}</span><p>${displayValue(value)}</p></article>`;
+    }).join('');
+    coachProfile.innerHTML = `
+      <div class="profile-topline"><div><p class="eyebrow">VERIFIED COACH CARD</p><h3>${escapeHtml(coaches.find(coach => coach.id === selectedCoachId).name)}</h3></div></div>
+      <label class="coach-version-label" for="coachVersionSelect">Card version
+        <select id="coachVersionSelect">${versions.filter(item => item.coachId === selectedCoachId).map(item =>
+          `<option value="${escapeHtml(item.versionId)}"${item.versionId === version.versionId ? ' selected' : ''}>${escapeHtml(item.cardVersion)}</option>`).join('')}
+        </select>
+      </label>
+      <div class="profile-facts">
+        <article class="profile-fact"><span>PLAYSTYLE</span><p>${displayValue(version.playstyle)}</p></article>
+        <article class="profile-fact"><span>FORMATION</span><p>${displayValue(version.formation)}</p></article>
+        <article class="profile-fact"><span>BOOST</span><p>${displayValue(version.boost)}</p></article>
+        <article class="profile-fact"><span>COST</span><p>${displayValue(version.costCoins, ' coins')}</p></article>
+        <article class="profile-fact"><span>PACK</span><p>${displayValue(version.packName)}</p></article>
+        ${affinities}
+      </div>
+      <div class="coach-version-images">
+        <section><h4>Coach portrait</h4>${version.imageUrl
+          ? `<img src="${escapeHtml(version.imageUrl)}" alt="${escapeHtml(version.cardVersion)} coach portrait" loading="lazy" width="240" height="300" />`
+          : '<p class="database-empty">Not in database yet — coming soon. No sourced portrait is available.</p>'}</section>
+        <section><h4>Pack banner</h4>${version.packImageUrl
+          ? `<img src="${escapeHtml(version.packImageUrl)}" alt="${escapeHtml(version.packName || version.cardVersion)} pack banner" loading="lazy" width="480" height="180" />`
+          : '<p class="database-empty">Not in database yet — coming soon. No sourced pack banner is available.</p>'}</section>
+      </div>
+      ${version.sourceUrl ? `<p class="coach-source-link">Source: <a href="${escapeHtml(version.sourceUrl)}" rel="noopener noreferrer">verified coach card record</a></p>` : ''}`;
+    coachProfile.hidden = false;
+    coachProfile.setAttribute('aria-busy', 'false');
+    coachProfile.querySelectorAll('.coach-version-images img').forEach(image => {
+      image.addEventListener('error', () => {
+        image.replaceWith(Object.assign(document.createElement('p'), {
+          className: 'database-empty',
+          textContent: 'Image unavailable at the verified source.'
+        }));
+      }, { once: true });
+    });
+    coachProfile.querySelector('#coachVersionSelect').addEventListener('change', event => {
+      const selectedVersion = versions.find(item => item.versionId === event.target.value);
+      if (selectedVersion) {
+        try {
+          localStorage.setItem('touchline:selectedCoachVersion', selectedVersion.versionId);
+        } catch (error) {
+          console.error('Unable to save the coach-card version:', error);
+        }
+        renderVersion(selectedVersion);
+      }
+    });
   };
 
   const renderCoach = coach => {
-    const proficiency = Math.max(0, Math.min(100, Number(coach.proficiency.score)));
-    const filteredPlayers = coach.playerStyleFilter
-      ? players.filter(player => coach.playerStyleFilter.includes(player.styleId))
-      : players;
-    const filterSummary = coach.playerStyleFilter
-      ? `${filteredPlayers.length} players matching ${coach.playerStyleFilter.length} coach-fit styles`
-      : 'No coach-specific style filter; showing all catalog players';
-    coachProfile.setAttribute('aria-busy', 'false');
-    coachProfile.innerHTML = `
-      <div class="profile-topline">
-        <div>
-          <p class="eyebrow">COACH PROFILE</p>
-          <h3>${escapeHtml(coach.name)}</h3>
-          <p class="profile-subtitle">${escapeHtml(coach.subtitle)}</p>
-        </div>
-        <div class="proficiency-score"><strong>${proficiency}<span>/100</span></strong><span>${escapeHtml(coach.proficiency.label)}</span></div>
-      </div>
-      <div class="proficiency-track" role="progressbar" aria-label="${escapeHtml(coach.name)} proficiency with recommended players" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${proficiency}">
-        <span style="width: ${proficiency}%"></span>
-      </div>
-      <p class="proficiency-note">${escapeHtml(coach.proficiency.note)}</p>
-      <div class="profile-facts">
-        <article class="profile-fact"><span>PLAYSTYLE</span><p>${escapeHtml(coach.playstyle)}</p></article>
-        <article class="profile-fact"><span>BEST FORMATION</span><p class="formation-value">${escapeHtml(coach.bestFormation)}</p></article>
-        <article class="profile-fact"><span>LINK-UP SKILL</span><p>${escapeHtml(coach.linkUpSkill)}</p></article>
-      </div>
-      <div class="profile-types">
-        <article class="type-card"><h4>PLAYER TYPES TO USE</h4><ul>${coach.playerTypesToUse.map(type => `<li>${escapeHtml(type)}</li>`).join('')}</ul></article>
-        <article class="type-card avoid"><h4>PLAYER TYPES TO AVOID</h4><ul>${coach.playerTypesToAvoid.map(type => `<li>${escapeHtml(type)}</li>`).join('')}</ul></article>
-      </div>
-      <div class="shortlist-heading">
-        <div><p class="eyebrow">COACH STYLE FILTER</p><h4>Style-fit player shortlist</h4></div>
-        <span>${escapeHtml(filterSummary)}</span>
-      </div>
-      <div class="player-card-grid coach-shortlist">${filteredPlayers.map(player => {
-        const style = styleById.get(player.styleId);
-        return `
-          <article class="player-card">
-            <span class="lineup-position">${escapeHtml(player.position)}</span>
-            <h5>${escapeHtml(player.name)}</h5>
-            ${styleBadge(style)}
-          </article>`;
-      }).join('')}</div>
-      <div class="lineup-heading"><div><p class="eyebrow">SUGGESTED STARTING XI</p><h4>Best-fit player roles</h4></div><span>11 PLAYERS</span></div>
-      <ol class="lineup-list">${coach.startingEleven.map(player => `
-        <li class="lineup-player">
-          <span class="lineup-position">${escapeHtml(player.position)}</span>
-          <div class="lineup-details">
-            <div class="lineup-player-heading"><strong>${escapeHtml(player.player)}</strong>${styleBadge(styleById.get(player.styleId))}</div>
-            <p>${escapeHtml(player.why)}</p>
-          </div>
-        </li>`).join('')}
-      </ol>`;
-  };
-
-  const showError = message => {
-    coachList.innerHTML = `<p class="lab-error">${escapeHtml(message)}</p>`;
-    coachProfile.setAttribute('aria-busy', 'false');
-    coachProfile.innerHTML = `<p class="lab-error">${escapeHtml(message)}</p>`;
-  };
-
-  const validateCoach = coach => {
-    const requiredText = ['id', 'name', 'subtitle', 'playstyle', 'bestFormation', 'linkUpSkill'];
-    if (!coach || requiredText.some(field => typeof coach[field] !== 'string' || !coach[field].trim())) {
-      throw new Error('Coach profile is missing required text fields.');
+    selectedCoachId = coach.id;
+    try {
+      localStorage.setItem('touchline:selectedCoach', coach.id);
+    } catch (error) {
+      console.error('Unable to save the coach selection:', error);
     }
-    if (!coach.proficiency || !Number.isFinite(coach.proficiency.score) || coach.proficiency.score < 0 || coach.proficiency.score > 100) {
-      throw new Error(`${coach.name} has an invalid proficiency score.`);
+    coachList.querySelectorAll('.coach-option').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.coachId === coach.id));
+    });
+    const availableVersions = versions.filter(version => version.coachId === coach.id);
+    if (!availableVersions.length) {
+      coachProfile.innerHTML = `<div class="profile-topline"><div><p class="eyebrow">COACH PROFILE</p><h3>${escapeHtml(coach.name)}</h3></div></div>
+        <p class="database-empty">Not in database yet — coming soon. No verified card version, affinity, boost, cost, pack, or portrait is available.</p>`;
+      coachProfile.hidden = false;
+      coachProfile.setAttribute('aria-busy', 'false');
+      return;
     }
-    if (!Array.isArray(coach.startingEleven) || coach.startingEleven.length !== 11 ||
-      coach.startingEleven.some(player => !player.position || !player.player || !player.why || !styleById.has(player.styleId))) {
-      throw new Error(`${coach.name} must have 11 complete starting XI entries.`);
+    let versionId = null;
+    try {
+      versionId = localStorage.getItem('touchline:selectedCoachVersion');
+    } catch (error) {
+      console.error('Unable to read the saved coach-card version:', error);
     }
-    if (!Array.isArray(coach.playerTypesToUse) || !Array.isArray(coach.playerTypesToAvoid)) {
-      throw new Error(`${coach.name} is missing player type guidance.`);
-    }
-    if (coach.playerStyleFilter !== null && (!Array.isArray(coach.playerStyleFilter) ||
-      coach.playerStyleFilter.some(styleId => !styleById.has(styleId)))) {
-      throw new Error(`${coach.name} has an invalid player style filter.`);
-    }
+    const version = availableVersions.find(item => item.versionId === versionId) || availableVersions[0];
+    renderVersion(version);
   };
 
   fetch('data.json')
     .then(response => {
-      if (!response.ok) throw new Error(`Coach data request failed (${response.status}).`);
+      if (!response.ok) throw new Error(`Shared database request failed (${response.status}).`);
       return response.json();
     })
     .then(data => {
-      if (!Array.isArray(data.coaches) || data.coaches.length === 0) {
-        throw new Error('Coach data is empty or has an invalid format.');
+      if (!Array.isArray(data.coaches) || !Array.isArray(data.coachVersions)) {
+        throw new Error('Coach database is missing a required collection.');
       }
-      if (!Array.isArray(data.playerStyles) || !Array.isArray(data.players)) {
-        throw new Error('Player style catalog is missing or invalid.');
+      coaches = data.coaches;
+      versions = data.coachVersions;
+      if (versions.some(version => !version.versionId || !version.coachId || !version.cardVersion ||
+        !coaches.some(coach => coach.id === version.coachId))) {
+        throw new Error('A coach version is missing its identity or coach.');
       }
-      styleById = new Map(data.playerStyles.map(style => [style.id, style]));
-      players = data.players;
-      players.forEach(player => {
-        if (!player.id || !player.name || !player.position || !styleById.has(player.styleId)) {
-          throw new Error(`Player ${player.name || player.id || 'entry'} is missing a valid style.`);
-        }
-      });
-      data.coaches.forEach(validateCoach);
-
-      coachList.replaceChildren();
-      let selectedCoachId = null;
+      let savedCoachId = null;
       try {
-        selectedCoachId = localStorage.getItem('touchline:selectedCoach');
+        savedCoachId = localStorage.getItem('touchline:selectedCoach');
       } catch (error) {
         console.error('Unable to read the saved coach selection:', error);
       }
-      const activeCoach = data.coaches.find(coach => coach.id === selectedCoachId) || data.coaches[0];
-      data.coaches.forEach(coach => {
+      coachList.replaceChildren(...coaches.map(coach => {
         const button = document.createElement('button');
         button.className = 'coach-option';
         button.type = 'button';
         button.textContent = coach.name;
-        button.setAttribute('aria-pressed', String(coach.id === activeCoach.id));
-        button.addEventListener('click', () => {
-          coachList.querySelectorAll('.coach-option').forEach(option => {
-            option.setAttribute('aria-pressed', String(option === button));
-          });
-          try {
-            localStorage.setItem('touchline:selectedCoach', coach.id);
-          } catch (error) {
-            console.error('Unable to save the coach selection:', error);
-          }
-          renderCoach(coach);
+        button.dataset.coachId = coach.id;
+        button.setAttribute('aria-pressed', String(coach.id === savedCoachId));
+        button.addEventListener('click', () => renderCoach(coach));
+        return button;
+      }));
+      coachSearch.addEventListener('input', () => {
+        const query = coachSearch.value.trim().toLowerCase();
+        const matches = coaches.filter(coach => coach.name.toLowerCase().includes(query));
+        coachList.querySelectorAll('.coach-option').forEach(button => {
+          button.hidden = !matches.some(coach => coach.id === button.dataset.coachId);
         });
-        coachList.append(button);
+        coachSearchStatus.hidden = Boolean(matches.length);
+        coachSearchStatus.textContent = matches.length
+          ? ''
+          : 'Not in database yet — coming soon. No coach card version is available for that name.';
       });
-
-      renderCoach(activeCoach);
+      coachProfile.hidden = true;
+      coachProfile.innerHTML = '';
+      coachList.dataset.savedCoachId = coaches.some(coach => coach.id === savedCoachId) ? savedCoachId : '';
     })
     .catch(error => {
-      console.error('Unable to load Coach Lab profiles:', error);
-      showError('Coach profiles could not be loaded. Open the site through a local web server and check data.json.');
+      console.error('Unable to load coach names:', error);
+      coachList.innerHTML = '<p class="lab-error">Coach names could not be loaded from the shared database.</p>';
+      coachProfile.hidden = false;
+      coachProfile.innerHTML = '<p class="lab-error">Coach data could not be loaded. Check data.json.</p>';
     });
 }

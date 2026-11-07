@@ -1,6 +1,6 @@
 # Touchline Intel
 
-A standalone, mobile-friendly eFootball Mobile fan-guide project. It includes a pack chance and coin-budget calculator, a source-first player release tracker, official redeem-code notices, a Player Styles Guide, and coach and squad-building guides.
+A standalone, mobile-friendly eFootball Mobile fan-guide project. It includes a pack chance and coin-budget calculator, a source-first player release tracker, official redeem-code notices, and a combined Player Styles & Instructions guide.
 
 ## Run locally
 
@@ -23,18 +23,16 @@ The site is independent and is not affiliated with Konami. It does not automate 
 - `player-tracker.html` explains how to follow confirmed player announcements. It is not a live feed; verify current availability in-game.
 - `redeem-codes.html` provides code-safety guidance. It lists no code unless it can be verified through an official source.
 - `coach-squad-guides.html` covers coach selection and practical squad-building principles.
-- The Coach Lab loads coach profiles and suggested lineups from `data.json`; add another object to the `coaches` array to add a coach.
-- `data.json` also contains the Player Styles catalog, player style IDs, and Latest Players list. Add styles to `playerStyles`, add player entries with a matching `styleId` to `players`, and list their IDs in `latestPlayers` to feature them on the homepage.
-- Coach Lab keeps each suggested starting XI intact and displays a separate style-filtered shortlist for Fabio Capello and Xabi Alonso. Jose Mourinho currently has no coach-specific style filter.
-- `player-instructions.html` loads the individual instruction setups in `data.json`. Coach selection is shared between Coach Lab and Player Instructions in the same browser.
+- `data.json` is the shared source for coach names, suggested instruction setups, player styles, card records, coach-card versions, and packs. The `playerCards`, `coachVersions`, and `packs` collections are empty until verified, card-specific data is available; the site shows an explicit “Not in database yet — coming soon” message rather than inventing values.
+- The Player Styles & Instructions guide combines style recommendations, coach selection, formation selection, an adjustable pitch, player-style assignments, and card search filters. Goalkeepers are excluded from instruction tables.
+- Coach Lab shows coach names first. Card-version attributes are displayed only when present in the shared `coachVersions` collection. The selected coach is shared between Coach Lab and the combined guide in the same browser.
+- eFHUB and eFootball DB are linked as research sources. Player card art, coach portraits, pack banners, ratings, skills, and live pack details are not copied or guessed; only add records that can be verified for the exact card/version.
 - The site header uses a sticky, horizontally scrolling, scrollbar-hidden navigation with snap points, scroll cues, arrows, and active-tab centering.
 
 Release and code information is intentionally not guessed. Check the linked official sources and the in-game News for current details.
 
-## Run Coach Lab locally
+## Run interactive guides locally
 
-Because Coach Lab loads `data.json` with `fetch`, open the site through a local web server instead of opening the HTML files directly. From this folder, run `py -m http.server 8000` and visit `http://localhost:8000/coach-squad-guides.html`.
+Because the interactive guides load `data.json` with `fetch`, open the site through a local web server instead of opening the HTML files directly. From this folder, run `py -m http.server 8000` and visit `http://localhost:8000/`.
 
-The homepage Player Styles Guide and Latest Players cards use the same JSON file and also require a local web server.
-
-Player Instructions and Coach Lab also load `data.json`, so use the local web server to try the shared coach selection and Copy Setup feature.
+The old `player-instructions.html` URL redirects to the combined guide for existing bookmarks.

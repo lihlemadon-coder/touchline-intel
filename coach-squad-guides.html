@@ -30,8 +30,7 @@
         <a href="player-tracker.html" data-nav-id="player-tracker">Player Tracker</a>
         <a href="redeem-codes.html" data-nav-id="redeem-codes">Code Notices</a>
         <a href="coach-squad-guides.html#coach-lab" data-nav-id="coach-lab">Coach Lab</a>
-        <a href="player-instructions.html" data-nav-id="player-instructions">Player Instructions</a>
-        <a href="index.html#player-styles" data-nav-id="player-styles">Player Styles</a>
+        <a href="index.html#player-styles" data-nav-id="player-styles">Player Styles &amp; Instructions</a>
         <a href="buying-guide.html" data-nav-id="buying-guide">Buying Guide</a>
       </nav>
       <button class="nav-arrow nav-arrow-right" type="button" aria-label="Scroll navigation right" data-scroll-direction="1">›</button>
@@ -53,20 +52,23 @@
             <p class="eyebrow">Interactive squad room</p>
             <h2 id="coachLabTitle">Coach Lab</h2>
           </div>
-          <p>Pick a coach to explore a tactical profile, style-filtered player shortlist, and suggested starting XI. Recommendations are editorial examples, not official in-game ratings.</p>
+          <p>Choose a coach name to check for sourced card-version data. The shared database will not display unverified ratings or affinities.</p>
         </div>
         <div class="coach-lab-layout">
           <div class="coach-sidebar">
             <p class="sidebar-label">SELECT A COACH</p>
+            <label class="coach-search-label" for="coachSearch">Search coach names
+              <input id="coachSearch" type="search" placeholder="e.g. Thomas Tuchel" autocomplete="off" />
+            </label>
             <div class="coach-list" id="coachList" role="group" aria-label="Choose a coach">
               <p class="lab-loading">Loading coach profiles…</p>
             </div>
+            <p class="database-empty" id="coachSearchStatus" hidden></p>
           </div>
-          <section class="coach-profile" id="coachProfile" aria-live="polite" aria-busy="true">
-            <p class="lab-loading">Loading coach profile…</p>
+          <section class="coach-profile" id="coachProfile" aria-live="polite" aria-busy="true" hidden>
           </section>
         </div>
-        <p class="lab-disclaimer">Player suggestions are examples based on football roles and coaching tendencies. Styles may vary by card version; confirm the exact style in-game. The proficiency score is a guide rating, not an official game stat.</p>
+        <p class="lab-disclaimer">Only sourced coach-card versions and in-game attributes belong in this profile. Missing information is shown as “Not in database yet — coming soon.”</p>
       </section>
 
       <div class="section-heading content-heading">

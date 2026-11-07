@@ -32,7 +32,9 @@ if (siteNav) {
 
   const isCurrentTab = link => {
     const target = new URL(link.href, window.location.href);
-    const normalizePath = path => path === '/' ? '/index.html' : path.replace(/\/+$/, '/');
+    const normalizePath = path => path.endsWith('/')
+      ? `${path}index.html`
+      : path.replace(/\/+$/, '') || '/index.html';
     const currentPath = normalizePath(window.location.pathname);
     const targetPath = normalizePath(target.pathname);
     if (currentPath !== targetPath) return false;
