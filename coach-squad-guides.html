@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Practical eFootball Mobile coach, playstyle, and squad-building guides." />
+  <meta name="description" content="Explore coach profiles and card-specific player styles and instructions in the Touchline Intel Coach Lab." />
   <meta name="theme-color" content="#101812" />
-  <title>Coach &amp; Squad-Building Guides | Touchline Intel</title>
+  <title>Coach Lab | Touchline Intel</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="coach-lab.js" defer></script>
+  <script src="player-styles.js" defer></script>
   <script src="site-nav.js" defer></script>
 </head>
 <body>
@@ -23,27 +24,39 @@
       <button class="nav-arrow nav-arrow-left" type="button" aria-label="Scroll navigation left" data-scroll-direction="-1">‹</button>
       <nav class="site-nav" aria-label="Main navigation" tabindex="0">
         <a href="index.html#home" data-nav-id="home">Home</a>
-        <a href="index.html#latest-players" data-nav-id="latest-players">Latest Players</a>
-        <a href="index.html#calculator" data-nav-id="calculator">Pack Calculator</a>
-        <a href="index.html#principles" data-nav-id="principles">Smart Pulls</a>
-        <a href="index.html#intel" data-nav-id="intel">More Intel</a>
-        <a href="player-tracker.html" data-nav-id="player-tracker">Player Tracker</a>
-        <a href="redeem-codes.html" data-nav-id="redeem-codes">Code Notices</a>
-        <a href="coach-squad-guides.html#coach-lab" data-nav-id="coach-lab">Coach Lab</a>
-        <a href="index.html#player-styles" data-nav-id="player-styles">Player Styles &amp; Instructions</a>
-        <a href="buying-guide.html" data-nav-id="buying-guide">Buying Guide</a>
+        <div class="nav-dropdown">
+          <a href="player-tracker.html#more-intel" data-nav-id="more-intel">More Intel</a>
+          <button class="nav-dropdown-toggle" type="button" aria-label="Open More Intel menu" aria-expanded="false"><span aria-hidden="true">⌄</span></button>
+          <div class="nav-submenu">
+            <a href="player-tracker.html#player-tracker">Player Tracker</a>
+            <a href="player-tracker.html#code-notices">Code Notices</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="coach-squad-guides.html#coach-page-top" data-nav-id="coach-lab">Coach Lab</a>
+          <button class="nav-dropdown-toggle" type="button" aria-label="Open Coach Lab menu" aria-expanded="false"><span aria-hidden="true">⌄</span></button>
+          <div class="nav-submenu">
+            <a href="coach-squad-guides.html#coach-lab">Coach Lab</a>
+            <a href="coach-squad-guides.html#player-styles">Player Styles &amp; Instructions</a>
+          </div>
+        </div>
       </nav>
       <button class="nav-arrow nav-arrow-right" type="button" aria-label="Scroll navigation right" data-scroll-direction="1">›</button>
     </div>
   </header>
 
-  <main>
+  <main id="coach-page-top">
     <section class="subpage-hero">
       <p class="eyebrow"><span class="live-dot"></span> Tactics room / eFootball Mobile</p>
       <h1>Build for<br /><span>your game.</span></h1>
       <p class="intro">A practical starting point for choosing a coach and building a balanced squad. Your best setup depends on your preferred playstyle and how you want to defend.</p>
       <p class="verification-note">Player attributes, manager effects, and game mechanics can change. Check current in-game descriptions and test changes in matches.</p>
     </section>
+
+    <nav class="section-nav" aria-label="Coach Lab sections">
+      <a href="#coach-lab">Coach Lab</a>
+      <a href="#player-styles">Player Styles &amp; Instructions</a>
+    </nav>
 
     <section class="content-section">
       <section class="coach-lab" id="coach-lab" aria-labelledby="coachLabTitle">
@@ -71,60 +84,66 @@
         <p class="lab-disclaimer">Only sourced coach-card versions and in-game attributes belong in this profile. Missing information is shown as “Not in database yet — coming soon.”</p>
       </section>
 
-      <div class="section-heading content-heading">
-        <div>
-          <p class="eyebrow">Guide 01 / Coach choice</p>
-          <h2>Start with the plan.</h2>
+      <section class="player-styles-section" id="player-styles">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">In-game terminology / reference</p>
+            <h2>Player Styles &amp; Instructions</h2>
+          </div>
+          <p>Choose a coach and formation to explore the pitch and instructions. Search for verified card records below; no ratings or skills are guessed.</p>
         </div>
-        <p>Choose a coach to support a playstyle you understand, not just for a headline rating. Coach effects and compatibility should be confirmed in the current game.</p>
-      </div>
-      <div class="guide-steps">
-        <article class="guide-step">
-          <span class="step-number">01</span>
-          <div><h3>Pick a style you can execute</h3><p>Consider how quickly you want to progress the ball, where you want to win it back, and how much space you are comfortable leaving behind.</p></div>
-        </article>
-        <article class="guide-step">
-          <span class="step-number">02</span>
-          <div><h3>Read the coach details</h3><p>Review the in-game playstyle ratings and any listed boosts. Don't assume a coach improves player-pull odds; there is no verified basis for that claim.</p></div>
-        </article>
-        <article class="guide-step">
-          <span class="step-number">03</span>
-          <div><h3>Test before rebuilding</h3><p>Try the coach in a few matches, then adjust one thing at a time. A familiar setup is often more useful than repeatedly chasing small rating changes.</p></div>
-        </article>
-      </div>
-
-      <div class="section-heading content-heading guide-heading">
-        <div>
-          <p class="eyebrow">Guide 02 / Squad building</p>
-          <h2>Build a functioning XI.</h2>
+        <div class="instruction-lab" aria-labelledby="mergedLabTitle">
+          <div class="instruction-toolbar">
+            <div>
+              <p class="eyebrow">Shared coach selection</p>
+              <h3 id="mergedLabTitle">Tactical setup</h3>
+            </div>
+            <div class="merged-selectors">
+              <label for="instructionCoach">Coach
+                <select id="instructionCoach" aria-label="Select coach">
+                  <option>Loading coaches…</option>
+                </select>
+              </label>
+              <label for="formationSelect">Formation
+                <select id="formationSelect" aria-label="Select formation"></select>
+              </label>
+            </div>
+          </div>
+          <p class="verification-note">Coach setups are editorial recommendations, not official coach-card data. Confirm tactics in-game.</p>
+          <div id="instructionContent" aria-live="polite" aria-busy="true">
+            <p class="lab-loading">Loading tactical setup…</p>
+          </div>
+          <aside class="slot-editor" id="slotEditor" hidden aria-live="polite"></aside>
+          <div class="copy-row">
+            <button class="copy-setup-button" id="copySetupButton" type="button" disabled>Copy Setup</button>
+            <p id="copyStatus" aria-live="polite">Select a coach to view a setup.</p>
+          </div>
         </div>
-        <p>Think in roles and relationships across the pitch. A squad is more than eleven high-rated cards.</p>
-      </div>
-      <div class="info-grid">
-        <article class="info-card">
-          <span class="intel-number">01 / STRUCTURE</span>
-          <h3>Choose a formation for your habits</h3>
-          <p>Decide where you want passing options and defensive cover. Use the formation as a starting shape, then check how players occupy space in matches.</p>
-        </article>
-        <article class="info-card">
-          <span class="intel-number">02 / ROLES</span>
-          <h3>Balance the key jobs</h3>
-          <p>Make sure the lineup can progress the ball, create chances, defend transitions, and protect the goal. Cover for aggressive runners with players who can hold position.</p>
-        </article>
-        <article class="info-card">
-          <span class="intel-number">03 / DEPTH</span>
-          <h3>Keep useful alternatives</h3>
-          <p>Build a bench with different options for tired players or a match that needs a different approach. Check player position familiarity and condition in-game.</p>
-        </article>
-      </div>
-
-      <div class="source-panel">
-        <p class="eyebrow">A simple review loop</p>
-        <h2>Change, test, learn.</h2>
-        <p class="panel-copy">After a few matches, note where possession breaks down or opponents find space. Adjust one role, player, or tactical setting at a time so you can tell what helped.</p>
-        <a class="panel-link" href="index.html#calculator">Planning a pack budget? Use the chance calculator <span aria-hidden="true">↗</span></a>
-      </div>
-      <a class="text-link" href="index.html#intel">← Back to all intel</a>
+        <div class="player-database">
+          <div class="section-heading">
+            <div><p class="eyebrow">Shared database / card-specific</p><h3>Find a player card</h3></div>
+            <p>Skills and stats belong to individual cards. Choose a card before viewing its details.</p>
+          </div>
+          <div class="player-filters">
+            <label for="playerSearch">Player or card name<input id="playerSearch" type="search" placeholder="Search e.g. Haaland" autocomplete="off" /></label>
+            <label for="positionFilter">Position<select id="positionFilter"><option value="">All positions</option><option>CF</option><option>SS</option><option>LW</option><option>RW</option><option>AMF</option><option>CMF</option><option>DMF</option><option>LB</option><option>CB</option><option>RB</option><option>GK</option></select></label>
+            <label for="playerStyleFilter">Player style<select id="playerStyleFilter"><option value="">All styles</option></select></label>
+            <label for="ratingFilter">Rating<select id="ratingFilter"><option value="">Any rating</option><option value="85">85+</option></select></label>
+            <label for="formFilter">Form<select id="formFilter"><option value="">Any form</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></label>
+            <label for="packFilter">Pack<input id="packFilter" type="search" placeholder="Any pack" /></label>
+            <label for="cardCoachFilter">Coach<input id="cardCoachFilter" type="search" placeholder="Any coach" /></label>
+          </div>
+          <div id="playerCardResults" class="player-card-grid" aria-live="polite">
+            <p class="lab-loading">Loading verified cards…</p>
+          </div>
+          <section id="playerCardDetail" class="player-card-detail" aria-live="polite" hidden></section>
+          <p class="source-note">Card records include source links for the individual player versions. Stats and photos are attributed to <a href="https://efootballdb.com/players" rel="noopener noreferrer">eFootball DB</a>; verify current in-game details before making squad decisions.</p>
+        </div>
+        <div class="style-guide-grid" id="playerStyleGuide" aria-live="polite">
+          <p class="lab-loading">Loading player styles…</p>
+        </div>
+        <p class="instruction-exception"><strong>Goalkeepers:</strong> No instructions available for GK.</p>
+      </section>
     </section>
   </main>
 

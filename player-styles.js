@@ -8,8 +8,73 @@ const copySetupButton = document.getElementById('copySetupButton');
 const copyStatus = document.getElementById('copyStatus');
 const playerCardResults = document.getElementById('playerCardResults');
 const playerCardDetail = document.getElementById('playerCardDetail');
+const playerDataRequest = fetch('data/players.json').then(response => {
+  if (!response.ok) throw new Error(`Player-card database request failed (${response.status}).`);
+  return response.json();
+});
 
-if (latestPlayerGrid && playerStyleGuide && coachSelect && formationSelect &&
+if (latestPlayerGrid) {
+  playerDataRequest
+    .then(playerData => {
+      if (!playerData || !Array.isArray(playerData.players)) {
+        throw new Error('Player-card database is missing its player collection.');
+      }
+      const recentCards = [...playerData.players]
+        .sort((first, second) => String(second.releaseDate || '').localeCompare(String(first.releaseDate || '')))
+        .slice(0, 8);
+      if (!recentCards.length) {
+        latestPlayerGrid.innerHTML = '<p class="database-empty">No sourced player cards are available yet.</p>';
+        return;
+      }
+      latestPlayerGrid.replaceChildren(...recentCards.map(card => {
+        const link = document.createElement('a');
+        link.className = 'latest-player-card';
+        link.href = `coach-squad-guides.html?player=${encodeURIComponent(card.playerName)}#player-styles`;
+        link.setAttribute('aria-label', `View ${card.playerName}, ${card.cardName}`);
+        const imageSource = card.cardImageUrl || card.faceUrl || card.imageUrl;
+        if (imageSource) {
+          const image = document.createElement('img');
+          image.src = imageSource;
+          image.alt = `${card.playerName} portrait`;
+          image.loading = 'lazy';
+          image.width = 74;
+          image.height = 100;
+          image.addEventListener('error', () => {
+            const fallback = document.createElement('span');
+            fallback.className = 'card-art-fallback';
+            fallback.textContent = String(card.playerName).trim().split(/\s+/).map(part => part[0]).join('').slice(0, 3).toUpperCase();
+            image.replaceWith(fallback);
+          }, { once: true });
+          link.append(image);
+        } else {
+          const fallback = document.createElement('span');
+          fallback.className = 'card-art-fallback';
+          fallback.textContent = String(card.playerName).trim().split(/\s+/).map(part => part[0]).join('').slice(0, 3).toUpperCase();
+          link.append(fallback);
+        }
+        const copy = document.createElement('span');
+        copy.className = 'latest-player-card-copy';
+        const name = document.createElement('strong');
+        name.textContent = card.playerName;
+        const version = document.createElement('span');
+        version.textContent = card.cardName;
+        const rating = document.createElement('span');
+        rating.textContent = `Rating ${Number.isFinite(card.overallRating) ? card.overallRating : '—'}`;
+        const form = document.createElement('span');
+        form.className = `form-grade${card.form ? ` form-grade-${card.form}` : ''}`;
+        form.textContent = `Form ${card.form || '—'}`;
+        copy.append(name, version, rating, form);
+        link.append(copy);
+        return link;
+      }));
+    })
+    .catch(error => {
+      console.error('Unable to load sourced player cards:', error);
+      latestPlayerGrid.innerHTML = '<p class="lab-error">The sourced player cards could not be loaded.</p>';
+    });
+}
+
+if (playerStyleGuide && coachSelect && formationSelect &&
   instructionContent && slotEditor && copySetupButton && copyStatus && playerCardResults && playerCardDetail) {
   const allowedAttacking = new Set(['None', 'Defensive', 'Anchoring']);
   const allowedDefensive = new Set(['None', 'Counter Target', 'Man Marking']);
@@ -31,20 +96,20 @@ if (latestPlayerGrid && playerStyleGuide && coachSelect && formationSelect &&
     'roaming-flank': ['None', 'Counter Target']
   };
   const formationRows = {
-    '4-2-1-3': [['LB', 'LCB', 'RCB', 'RB'], ['DMF', 'DMF'], ['AMF'], ['LW', 'CF', 'RW']],
-    '4-1-2-3': [['LB', 'LCB', 'RCB', 'RB'], ['DMF'], ['CMF', 'CMF'], ['LW', 'CF', 'RW']],
-    '4-3-3': [['LB', 'LCB', 'RCB', 'RB'], ['CMF', 'CMF', 'CMF'], ['LW', 'CF', 'RW']],
-    '4-2-3-1': [['LB', 'LCB', 'RCB', 'RB'], ['DMF', 'DMF'], ['LMF', 'AMF', 'RMF'], ['CF']],
-    '4-4-2': [['LB', 'LCB', 'RCB', 'RB'], ['LMF', 'CMF', 'CMF', 'RMF'], ['CF', 'CF']],
-    '4-1-4-1': [['LB', 'LCB', 'RCB', 'RB'], ['DMF'], ['LMF', 'CMF', 'CMF', 'RMF'], ['CF']],
-    '3-2-3-2': [['LCB', 'CB', 'RCB'], ['DMF', 'DMF'], ['LW', 'AMF', 'RW'], ['SS', 'CF']],
-    '3-4-3': [['LCB', 'CB', 'RCB'], ['LMF', 'CMF', 'CMF', 'RMF'], ['LW', 'CF', 'RW']],
-    '3-5-2': [['LCB', 'CB', 'RCB'], ['LMF', 'CMF', 'CMF', 'CMF', 'RMF'], ['CF', 'CF']],
-    '5-3-2': [['LB', 'LCB', 'CB', 'RCB', 'RB'], ['CMF', 'CMF', 'CMF'], ['CF', 'CF']],
-    '4-3-1-2': [['LB', 'LCB', 'RCB', 'RB'], ['CMF', 'CMF', 'CMF'], ['AMF'], ['CF', 'CF']],
-    '3-4-1-2': [['LCB', 'CB', 'RCB'], ['LMF', 'CMF', 'CMF', 'RMF'], ['AMF'], ['CF', 'CF']],
-    '4-2-2-2': [['LB', 'LCB', 'RCB', 'RB'], ['DMF', 'DMF'], ['AMF', 'AMF'], ['CF', 'CF']],
-    '3-2-2-3': [['LCB', 'CB', 'RCB'], ['DMF', 'DMF'], ['AMF', 'AMF'], ['LW', 'CF', 'RW']]
+    '4-2-1-3': [['GK', 50, 92], ['LB', 12, 72], ['LCB', 38, 74], ['RCB', 62, 74], ['RB', 88, 72], ['LDMF', 38, 56], ['RDMF', 62, 56], ['AMF', 50, 38], ['LW', 15, 22], ['CF', 50, 18], ['RW', 85, 22]],
+    '4-1-2-3': [['GK', 50, 92], ['LB', 12, 72], ['LCB', 38, 74], ['RCB', 62, 74], ['RB', 88, 72], ['DMF', 50, 56], ['LCMF', 38, 38], ['RCMF', 62, 38], ['LW', 15, 22], ['CF', 50, 18], ['RW', 85, 22]],
+    '4-3-3': [['GK', 50, 92], ['LB', 12, 72], ['LCB', 38, 74], ['RCB', 62, 74], ['RB', 88, 72], ['LCMF', 30, 55], ['CMF', 50, 52], ['RCMF', 70, 55], ['LW', 15, 22], ['CF', 50, 18], ['RW', 85, 22]],
+    '4-2-3-1': [['GK', 50, 92], ['LB', 12, 72], ['LCB', 38, 74], ['RCB', 62, 74], ['RB', 88, 72], ['LDMF', 38, 56], ['RDMF', 62, 56], ['LMF', 20, 38], ['AMF', 50, 36], ['RMF', 80, 38], ['CF', 50, 18]],
+    '4-4-2': [['GK', 50, 92], ['LB', 12, 72], ['LCB', 38, 74], ['RCB', 62, 74], ['RB', 88, 72], ['LMF', 15, 38], ['LCMF', 38, 40], ['RCMF', 62, 40], ['RMF', 85, 38], ['LCF', 35, 18], ['RCF', 65, 18]],
+    '4-1-4-1': [['GK', 50, 92], ['LB', 12, 72], ['LCB', 38, 74], ['RCB', 62, 74], ['RB', 88, 72], ['DMF', 50, 56], ['LMF', 15, 38], ['LCMF', 38, 40], ['RCMF', 62, 40], ['RMF', 85, 38], ['CF', 50, 18]],
+    '3-2-3-2': [['GK', 50, 92], ['LCB', 25, 74], ['CB', 50, 76], ['RCB', 75, 74], ['LDMF', 38, 56], ['RDMF', 62, 56], ['LMF', 15, 38], ['CMF', 50, 36], ['RMF', 85, 38], ['LCF', 35, 20], ['RCF', 65, 20]],
+    '3-4-3': [['GK', 50, 92], ['LCB', 25, 74], ['CB', 50, 76], ['RCB', 75, 74], ['LMF', 15, 55], ['LCMF', 38, 52], ['RCMF', 62, 52], ['RMF', 85, 55], ['LW', 15, 22], ['CF', 50, 18], ['RW', 85, 22]],
+    '3-5-2': [['GK', 50, 92], ['LCB', 25, 74], ['CB', 50, 76], ['RCB', 75, 74], ['LWB', 12, 55], ['LCMF', 30, 40], ['CMF', 50, 38], ['RCMF', 70, 40], ['RWB', 88, 55], ['LCF', 35, 18], ['RCF', 65, 18]],
+    '5-3-2': [['GK', 50, 92], ['LWB', 12, 55], ['LCB', 28, 74], ['CB', 50, 76], ['RCB', 72, 74], ['RWB', 88, 55], ['LCMF', 30, 38], ['CMF', 50, 36], ['RCMF', 70, 38], ['LCF', 35, 18], ['RCF', 65, 18]],
+    '4-3-1-2': [['GK', 50, 92], ['LB', 12, 72], ['LCB', 38, 74], ['RCB', 62, 74], ['RB', 88, 72], ['LCMF', 30, 55], ['CMF', 50, 52], ['RCMF', 70, 55], ['AMF', 50, 36], ['LCF', 35, 18], ['RCF', 65, 18]],
+    '3-4-1-2': [['GK', 50, 92], ['LCB', 25, 74], ['CB', 50, 76], ['RCB', 75, 74], ['LMF', 15, 55], ['LCMF', 38, 52], ['RCMF', 62, 52], ['RMF', 85, 55], ['AMF', 50, 36], ['LCF', 35, 18], ['RCF', 65, 18]],
+    '4-2-2-2': [['GK', 50, 92], ['LB', 12, 72], ['LCB', 38, 74], ['RCB', 62, 74], ['RB', 88, 72], ['LDMF', 38, 56], ['RDMF', 62, 56], ['LAMF', 30, 36], ['RAMF', 70, 36], ['LCF', 35, 18], ['RCF', 65, 18]],
+    '3-2-2-3': [['GK', 50, 92], ['LCB', 25, 74], ['CB', 50, 76], ['RCB', 75, 74], ['LDMF', 38, 56], ['RDMF', 62, 56], ['LAMF', 30, 36], ['RAMF', 70, 36], ['LW', 15, 20], ['CF', 50, 16], ['RW', 85, 20]]
   };
   const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({
     '&': '&amp;',
@@ -69,29 +134,24 @@ if (latestPlayerGrid && playerStyleGuide && coachSelect && formationSelect &&
   let draggedSlotIndex = null;
 
   const styleInstructions = (styleId, position) => {
-    if (styleId === 'destroyer-midfielder' && position !== 'DMF') return ['Defensive', 'None'];
+    if (styleId === 'destroyer-midfielder' && normalizePosition(position) !== 'DMF') return ['Defensive', 'None'];
     return instructionByStyle[styleId] || ['None', 'None'];
   };
 
   const makeFormationSlots = formation => {
-    const groups = formationRows[formation];
-    const slots = [{ position: 'GK', x: 50, y: 92, styleId: null }];
-    groups.forEach((positions, groupIndex) => {
-      const y = [77, 62, 47, 29][groupIndex];
-      positions.forEach((position, index) => {
-        const x = formation === '3-2-3-2' && groupIndex === 3
-          ? (position === 'CF' ? 50 : 78)
-          : positions.length === 1 ? 50 : 16 + (68 * index) / (positions.length - 1);
-        slots.push({ position, x, y, styleId: null });
-      });
-    });
-    return slots;
+    return formationRows[formation].map(([position, x, y]) => ({ position, x, y, styleId: null }));
   };
 
   const cardForSlot = slot => cards.find(card => card.cardId === slot.cardId);
 
   const normalizePosition = position => {
-    if (/^(LCB|RCB|CB)/.test(position)) return 'CB';
+    if (/^(L|R)?CB$/.test(position)) return 'CB';
+    if (/^(L|R)DMF$/.test(position)) return 'DMF';
+    if (/^(L|R)CMF$/.test(position)) return 'CMF';
+    if (/^(L|R)AMF$/.test(position)) return 'AMF';
+    if (/^(L|R)CF$/.test(position)) return 'CF';
+    if (position === 'LWB') return 'LB';
+    if (position === 'RWB') return 'RB';
     if (position === 'LMF') return 'LMF';
     if (position === 'RMF') return 'RMF';
     return position;
@@ -110,9 +170,9 @@ if (latestPlayerGrid && playerStyleGuide && coachSelect && formationSelect &&
       if (label.startsWith(`${normalized} `)) return true;
       if ((position === 'LB' || position === 'RB') && label === 'LB / RB') return true;
       if ((position === 'LW' || position === 'RW') && label === 'LW / RW') return true;
-      if ((position === 'LW' || position === 'RW' || position === 'CF') && label === 'OTHER ATTACKERS') return true;
+      if ((normalized === 'LW' || normalized === 'RW' || normalized === 'CF') && label === 'OTHER ATTACKERS') return true;
       if (normalized === 'CB' && label.startsWith('CB')) return true;
-      if (position === 'CF' && label.startsWith('CF ')) return true;
+      if (normalized === 'CF' && label.startsWith('CF ')) return true;
       return false;
     });
     if (!candidates.length) return null;
@@ -135,7 +195,7 @@ if (latestPlayerGrid && playerStyleGuide && coachSelect && formationSelect &&
   };
 
   const renderPitch = () => `
-    <div class="formation-pitch" aria-label="${escapeHtml(activeFormation)} tactical pitch">
+    <div class="formation-pitch" aria-label="${escapeHtml(activeFormation)} tactical pitch, opponent goal at top and own goal at bottom">
       <div class="formation-pitch-lines" aria-hidden="true"></div>
       ${activeSetup.slots.map((slot, index) => {
         const style = styleById.get(slot.styleId);
@@ -144,11 +204,13 @@ if (latestPlayerGrid && playerStyleGuide && coachSelect && formationSelect &&
           style="left:${slot.x}%;top:${slot.y}%"
           data-slot-index="${index}" draggable="true"
           aria-label="${escapeHtml(slot.position)}${style ? `, ${escapeHtml(style.name)}` : ''}">
-          ${card && card.faceUrl
-            ? `<img class="formation-face" src="${escapeHtml(card.faceUrl)}" alt="" loading="lazy" width="32" height="32" /><span class="formation-face-fallback" style="background:${teamColorFor(card)}" hidden>${escapeHtml(initialsFor(card.playerName))}</span>`
-            : ''}
+          ${card ? `<span class="formation-player-name">${escapeHtml(card.playerName)}</span>` : ''}
+          <span class="formation-dot-core" style="background:${card ? teamColorFor(card) : ''}">
+            ${card && card.faceUrl
+              ? `<img class="formation-face" src="${escapeHtml(card.faceUrl)}" alt="" loading="lazy" width="48" height="48" /><span class="formation-face-fallback" hidden>${escapeHtml(initialsFor(card.playerName))}</span>`
+              : card ? `<span class="formation-face-fallback">${escapeHtml(initialsFor(card.playerName))}</span>` : ''}
+          </span>
           <strong>${escapeHtml(slot.position)}</strong>
-          ${card ? `<span>${escapeHtml(card.playerName)}</span>` : style ? `<span>${escapeHtml(style.name)}</span>` : ''}
         </button>`;
       }).join('')}
     </div>`;
@@ -383,22 +445,16 @@ if (latestPlayerGrid && playerStyleGuide && coachSelect && formationSelect &&
     event.dataTransfer.effectAllowed = 'move';
   });
   instructionContent.addEventListener('dragover', event => {
-    if (event.target.closest('[data-slot-index]')) event.preventDefault();
+    if (event.target.closest('.formation-pitch')) event.preventDefault();
   });
   instructionContent.addEventListener('drop', event => {
-    const target = event.target.closest('[data-slot-index]');
-    if (!target || draggedSlotIndex === null) return;
+    const pitch = event.target.closest('.formation-pitch');
+    if (!pitch || draggedSlotIndex === null) return;
     event.preventDefault();
-    const targetIndex = Number(target.dataset.slotIndex);
-    const dragged = activeSetup.slots[draggedSlotIndex];
-    const destination = activeSetup.slots[targetIndex];
-    if (dragged.position === 'GK' || destination.position === 'GK') {
-      draggedSlotIndex = null;
-      return;
-    }
-    [dragged.position, destination.position] = [destination.position, dragged.position];
-    [dragged.styleId, destination.styleId] = [destination.styleId, dragged.styleId];
-    [dragged.cardId, destination.cardId] = [destination.cardId, dragged.cardId];
+    const bounds = pitch.getBoundingClientRect();
+    const slot = activeSetup.slots[draggedSlotIndex];
+    slot.x = Math.max(0, Math.min(100, ((event.clientX - bounds.left) / bounds.width) * 100));
+    slot.y = Math.max(0, Math.min(100, ((event.clientY - bounds.top) / bounds.height) * 100));
     draggedSlotIndex = null;
     renderSetup();
   });
@@ -480,10 +536,7 @@ if (latestPlayerGrid && playerStyleGuide && coachSelect && formationSelect &&
       if (!response.ok) throw new Error(`Shared guide database request failed (${response.status}).`);
       return response.json();
     }),
-    fetch('data/players.json').then(response => {
-      if (!response.ok) throw new Error(`Player-card database request failed (${response.status}).`);
-      return response.json();
-    })
+    playerDataRequest
   ])
     .then(([data, playerData]) => {
       if (!Array.isArray(data.coaches) || !Array.isArray(data.playerInstructions) ||
@@ -509,7 +562,6 @@ if (latestPlayerGrid && playerStyleGuide && coachSelect && formationSelect &&
         throw new Error('A player-card record is missing card-specific fields.');
       }
 
-      latestPlayerGrid.innerHTML = '<p class="database-empty">Not in database yet — coming soon. No verified latest-player cards are available.</p>';
       renderStyleGuide(data.playerStyles);
 
       const availableStyles = data.playerStyles.filter(style => style.group !== 'Goalkeepers');
@@ -575,10 +627,14 @@ if (latestPlayerGrid && playerStyleGuide && coachSelect && formationSelect &&
         instructionContent.innerHTML = '<p class="database-empty">Not in database yet — coming soon. No verified instruction setup is available for this coach.</p>';
       }
       renderCardResults();
+      const requestedPlayer = new URLSearchParams(window.location.search).get('player');
+      if (requestedPlayer) {
+        document.getElementById('playerSearch').value = requestedPlayer;
+        renderCardResults();
+      }
     })
     .catch(error => {
       console.error('Unable to load the shared player database:', error);
-      latestPlayerGrid.innerHTML = '<p class="lab-error">The shared database could not be loaded.</p>';
       playerStyleGuide.innerHTML = '<p class="lab-error">The shared database could not be loaded.</p>';
       instructionContent.setAttribute('aria-busy', 'false');
       instructionContent.innerHTML = '<p class="lab-error">The shared database could not be loaded. Check data.json.</p>';

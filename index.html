@@ -24,22 +24,29 @@
       <button class="nav-arrow nav-arrow-left" type="button" aria-label="Scroll navigation left" data-scroll-direction="-1">‹</button>
       <nav class="site-nav" aria-label="Main navigation" tabindex="0">
         <a href="index.html#home" data-nav-id="home">Home</a>
-        <a href="index.html#latest-players" data-nav-id="latest-players">Latest Players</a>
-        <a href="index.html#calculator" data-nav-id="calculator">Pack Calculator</a>
-        <a href="index.html#principles" data-nav-id="principles">Smart Pulls</a>
-        <a href="index.html#intel" data-nav-id="intel">More Intel</a>
-        <a href="player-tracker.html" data-nav-id="player-tracker">Player Tracker</a>
-        <a href="redeem-codes.html" data-nav-id="redeem-codes">Code Notices</a>
-        <a href="coach-squad-guides.html#coach-lab" data-nav-id="coach-lab">Coach Lab</a>
-        <a href="index.html#player-styles" data-nav-id="player-styles">Player Styles &amp; Instructions</a>
-        <a href="buying-guide.html" data-nav-id="buying-guide">Buying Guide</a>
+        <div class="nav-dropdown">
+          <a href="player-tracker.html#more-intel" data-nav-id="more-intel">More Intel</a>
+          <button class="nav-dropdown-toggle" type="button" aria-label="Open More Intel menu" aria-expanded="false"><span aria-hidden="true">⌄</span></button>
+          <div class="nav-submenu">
+            <a href="player-tracker.html#player-tracker">Player Tracker</a>
+            <a href="player-tracker.html#code-notices">Code Notices</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="coach-squad-guides.html#coach-page-top" data-nav-id="coach-lab">Coach Lab</a>
+          <button class="nav-dropdown-toggle" type="button" aria-label="Open Coach Lab menu" aria-expanded="false"><span aria-hidden="true">⌄</span></button>
+          <div class="nav-submenu">
+            <a href="coach-squad-guides.html#coach-lab">Coach Lab</a>
+            <a href="coach-squad-guides.html#player-styles">Player Styles &amp; Instructions</a>
+          </div>
+        </div>
       </nav>
       <button class="nav-arrow nav-arrow-right" type="button" aria-label="Scroll navigation right" data-scroll-direction="1">›</button>
     </div>
   </header>
 
-  <main id="home">
-    <section class="hero">
+  <main>
+    <section class="hero" id="home">
       <div class="hero-copy">
         <p class="eyebrow"><span class="live-dot"></span> eFootball Mobile · independent guide</p>
         <h1>Play the odds.<br /><span>Not the hype.</span></h1>
@@ -55,7 +62,27 @@
       </div>
     </section>
 
-    <section class="calculator-section" id="calculator">
+    <nav class="section-nav home-section-nav" aria-label="Home sections">
+      <a href="#latest-players">Latest Players</a>
+      <a href="#calculator">Pack Calculator</a>
+      <a href="#principles">Smart Pulls</a>
+      <a href="#buying-guide">Buying Guide</a>
+    </nav>
+
+    <section class="players-section home-section" id="latest-players">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Player database / verified card records</p>
+          <h2>Latest Players</h2>
+        </div>
+        <p>Card versions, photos, and form from the sourced player database. Overall ratings show only when available from the source.</p>
+      </div>
+      <div class="latest-player-strip" id="latestPlayerGrid" aria-live="polite">
+        <p class="lab-loading">Loading player cards…</p>
+      </div>
+    </section>
+
+    <section class="calculator-section home-section" id="calculator">
       <div class="section-heading">
         <div>
           <p class="eyebrow">Your coins. Your call.</p>
@@ -96,7 +123,7 @@
       <p class="source-note"><strong>Source check:</strong> Copy the target player's per-draw rate and 10-draw pack cost from the current in-game pack details. Community reports can be incomplete or wrong.</p>
     </section>
 
-    <section class="principles-section" id="principles">
+    <section class="principles-section home-section" id="principles">
       <div class="section-heading">
         <div>
           <p class="eyebrow">Keep your game yours</p>
@@ -112,105 +139,27 @@
       <p class="disclaimer">Touchline Intel is an independent fan guide, not affiliated with Konami. It does not automate purchases, bypass game systems, or guarantee results. Spend responsibly.</p>
     </section>
 
-    <section class="players-section" id="latest-players">
+    <section class="buying-guide-section home-section" id="buying-guide">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Player database / verified card records</p>
-          <h2>Latest Players</h2>
+          <p class="eyebrow">Spend with a plan / eFootball Mobile</p>
+          <h2>Buying Guide</h2>
         </div>
-        <p>Only player cards with sourced, card-specific data will appear here.</p>
+        <p>A checklist for evaluating a pack and setting a coin budget, without treating a chance as a guarantee.</p>
       </div>
-      <div class="player-card-grid" id="latestPlayerGrid" aria-live="polite">
-        <p class="lab-loading">Loading player cards…</p>
+      <div class="info-grid">
+        <article class="info-card"><span class="intel-number">01 / SQUAD</span><h3>Check the role first</h3><p>Identify the position and role your squad actually needs. Compare a player with your current options before spending.</p></article>
+        <article class="info-card"><span class="intel-number">02 / ODDS</span><h3>Read the pack details</h3><p>Verify the player pool, per-draw target rate, pack cost, and any guarantees in the current in-game details.</p></article>
+        <article class="info-card"><span class="intel-number">03 / BUDGET</span><h3>Set your stopping point</h3><p>Choose an amount you are comfortable spending in advance. Don't chase a target by exceeding that limit.</p></article>
+        <article class="info-card"><span class="intel-number">04 / VERIFY</span><h3>Ignore guaranteed-pull claims</h3><p>Timing tricks, third-party generators, and rumors do not change the stated odds. Use official in-game information.</p></article>
+        <article class="info-card"><span class="intel-number">05 / COMPARE</span><h3>Think about future options</h3><p>Consider whether you would rather save coins for a different position or campaign. Offers and player availability change.</p></article>
+        <article class="info-card"><span class="intel-number">06 / DECIDE</span><h3>Make it your call</h3><p>Skip the pack if the possible outcome is not worth the cost to you. No player is essential to enjoy the game.</p></article>
       </div>
-    </section>
-
-    <section class="player-styles-section" id="player-styles">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">In-game terminology / reference</p>
-          <h2>Player Styles &amp; Instructions</h2>
-        </div>
-        <p>Choose a coach and formation to explore the pitch and instructions. Search for verified card records below; no ratings or skills are guessed.</p>
-      </div>
-      <div class="instruction-lab" aria-labelledby="mergedLabTitle">
-        <div class="instruction-toolbar">
-          <div>
-            <p class="eyebrow">Shared coach selection</p>
-            <h3 id="mergedLabTitle">Tactical setup</h3>
-          </div>
-          <div class="merged-selectors">
-            <label for="instructionCoach">Coach
-              <select id="instructionCoach" aria-label="Select coach">
-                <option>Loading coaches…</option>
-              </select>
-            </label>
-            <label for="formationSelect">Formation
-              <select id="formationSelect" aria-label="Select formation"></select>
-            </label>
-          </div>
-        </div>
-        <p class="verification-note">Coach setups are editorial recommendations, not official coach-card data. Confirm tactics in-game.</p>
-        <div id="instructionContent" aria-live="polite" aria-busy="true">
-          <p class="lab-loading">Loading tactical setup…</p>
-        </div>
-        <aside class="slot-editor" id="slotEditor" hidden aria-live="polite"></aside>
-        <div class="copy-row">
-          <button class="copy-setup-button" id="copySetupButton" type="button" disabled>Copy Setup</button>
-          <p id="copyStatus" aria-live="polite">Select a coach to view a setup.</p>
-        </div>
-      </div>
-      <div class="player-database">
-        <div class="section-heading">
-          <div><p class="eyebrow">Shared database / card-specific</p><h3>Find a player card</h3></div>
-          <p>Skills and stats belong to individual cards. Choose a card before viewing its details.</p>
-        </div>
-        <div class="player-filters">
-          <label for="playerSearch">Player or card name<input id="playerSearch" type="search" placeholder="Search e.g. Haaland" autocomplete="off" /></label>
-          <label for="positionFilter">Position<select id="positionFilter"><option value="">All positions</option><option>CF</option><option>SS</option><option>LW</option><option>RW</option><option>AMF</option><option>CMF</option><option>DMF</option><option>LB</option><option>CB</option><option>RB</option><option>GK</option></select></label>
-          <label for="playerStyleFilter">Player style<select id="playerStyleFilter"><option value="">All styles</option></select></label>
-          <label for="ratingFilter">Rating<select id="ratingFilter"><option value="">Any rating</option><option value="85">85+</option></select></label>
-          <label for="formFilter">Form<select id="formFilter"><option value="">Any form</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></label>
-          <label for="packFilter">Pack<input id="packFilter" type="search" placeholder="Any pack" /></label>
-          <label for="cardCoachFilter">Coach<input id="cardCoachFilter" type="search" placeholder="Any coach" /></label>
-        </div>
-        <div id="playerCardResults" class="player-card-grid" aria-live="polite">
-          <p class="lab-loading">Loading verified cards…</p>
-        </div>
-        <section id="playerCardDetail" class="player-card-detail" aria-live="polite" hidden></section>
-        <p class="source-note">Card records include source links for the individual player versions. Stats and photos are attributed to <a href="https://efootballdb.com/players" rel="noopener noreferrer">eFootball DB</a>; verify current in-game details before making squad decisions.</p>
-      </div>
-      <div class="style-guide-grid" id="playerStyleGuide" aria-live="polite">
-        <p class="lab-loading">Loading player styles…</p>
-      </div>
-      <p class="instruction-exception"><strong>Goalkeepers:</strong> No instructions available for GK.</p>
-    </section>
-
-    <section class="intel-section" id="intel">
-      <div>
-        <p class="eyebrow">More matchday intel</p>
-        <h2>Plan your next<br />move.</h2>
-        <p class="intel-intro">Track official player announcements, check code notices safely, and build a squad around the way you play.</p>
-      </div>
-      <div class="intel-grid">
-        <a class="intel-card" href="player-tracker.html">
-          <span class="intel-number">01 / TRACK</span>
-          <h3>Player release tracker</h3>
-          <p>Follow confirmed announcements and learn how to separate them from rumors.</p>
-          <span class="card-link">Open tracker <span aria-hidden="true">↗</span></span>
-        </a>
-        <a class="intel-card" href="redeem-codes.html">
-          <span class="intel-number">02 / VERIFY</span>
-          <h3>Official code notices</h3>
-          <p>Check for verified notices and use only official redemption instructions.</p>
-          <span class="card-link">Check notices <span aria-hidden="true">↗</span></span>
-        </a>
-        <a class="intel-card" href="coach-squad-guides.html">
-          <span class="intel-number">03 / BUILD</span>
-          <h3>Coach &amp; squad guides</h3>
-          <p>Understand playstyles, roles, and the balance behind a reliable lineup.</p>
-          <span class="card-link">Read the guides <span aria-hidden="true">↗</span></span>
-        </a>
+      <div class="source-panel">
+        <p class="eyebrow">Plan the numbers</p>
+        <h2>Estimate your chances first.</h2>
+        <p class="panel-copy">The calculator uses the target player's displayed per-draw rate and complete 10-draw packs within your budget. It does not promise a result.</p>
+        <a class="panel-link" href="#calculator">Open the pack chance calculator <span aria-hidden="true">↗</span></a>
       </div>
     </section>
   </main>
