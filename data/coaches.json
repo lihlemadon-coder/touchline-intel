@@ -1,0 +1,705 @@
+{
+    "source":  "eFootball DB API /api/2022/managers/{name}",
+    "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+    "playstyles":  [
+                       "Quick Counter",
+                       "Possession Game",
+                       "Long Ball Counter",
+                       "Out Wide",
+                       "Long Ball",
+                       "Overload"
+                   ],
+    "coaches":  [
+                    {
+                        "id":  "17594065092748",
+                        "coachName":  "Deschamps",
+                        "sourceName":  "D. Deschamps",
+                        "versionName":  "v7",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17594065092748",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  15,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  15
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  62,
+                                         "Possession Game":  69,
+                                         "Long Ball Counter":  88,
+                                         "Out Wide":  75,
+                                         "Long Ball":  67,
+                                         "Overload":  62
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "17606681559180",
+                        "coachName":  "Deschamps",
+                        "sourceName":  "D. Deschamps",
+                        "versionName":  "v6",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17606681559180",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  2,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  2
+                                            },
+                                            {
+                                                "pes_id":  15,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  15
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  68,
+                                         "Possession Game":  89,
+                                         "Long Ball Counter":  89,
+                                         "Out Wide":  59,
+                                         "Long Ball":  63,
+                                         "Overload":  59
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "4194444",
+                        "coachName":  "Deschamps",
+                        "sourceName":  "D. Deschamps",
+                        "versionName":  "v0",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/4194444",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  65,
+                                         "Possession Game":  71,
+                                         "Long Ball Counter":  75,
+                                         "Out Wide":  68,
+                                         "Long Ball":  44,
+                                         "Overload":  74
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "17601312850052",
+                        "coachName":  "Fabio Capello",
+                        "sourceName":  "Fabio Capello",
+                        "versionName":  "v2",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17601312850052",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  11,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  11
+                                            },
+                                            {
+                                                "pes_id":  7,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  7
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  57,
+                                         "Possession Game":  46,
+                                         "Long Ball Counter":  89,
+                                         "Out Wide":  64,
+                                         "Long Ball":  89,
+                                         "Overload":  46
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "17602386693824",
+                        "coachName":  "Hansi Flick",
+                        "sourceName":  "Hansi Flick",
+                        "versionName":  "v6",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17602386693824",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  4,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  4
+                                            },
+                                            {
+                                                "pes_id":  5,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  5
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  88,
+                                         "Possession Game":  89,
+                                         "Long Ball Counter":  69,
+                                         "Out Wide":  57,
+                                         "Long Ball":  45,
+                                         "Overload":  45
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "17597554855616",
+                        "coachName":  "Hansi Flick",
+                        "sourceName":  "Hansi Flick",
+                        "versionName":  "v4",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17597554855616",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  15,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  15
+                                            },
+                                            {
+                                                "pes_id":  5,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  5
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  75,
+                                         "Possession Game":  88,
+                                         "Long Ball Counter":  45,
+                                         "Out Wide":  64,
+                                         "Long Ball":  31,
+                                         "Overload":  31
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "102080",
+                        "coachName":  "Hansi Flick",
+                        "sourceName":  "Hansi Flick",
+                        "versionName":  "v0",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/102080",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  72,
+                                         "Possession Game":  65,
+                                         "Long Ball Counter":  34,
+                                         "Out Wide":  52,
+                                         "Long Ball":  18,
+                                         "Overload":  80
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "17597017982861",
+                        "coachName":  "Jose Mourinho",
+                        "sourceName":  "José Mourinho",
+                        "versionName":  "v2",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17597017982861",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  12,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  12
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  45,
+                                         "Possession Game":  49,
+                                         "Long Ball Counter":  88,
+                                         "Out Wide":  88,
+                                         "Long Ball":  66,
+                                         "Overload":  45
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "17608560707469",
+                        "coachName":  "Jose Mourinho",
+                        "sourceName":  "José Mourinho",
+                        "versionName":  "v13",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17608560707469",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  13,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  13
+                                            },
+                                            {
+                                                "pes_id":  7,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  7
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  82,
+                                         "Possession Game":  62,
+                                         "Long Ball Counter":  90,
+                                         "Out Wide":  67,
+                                         "Long Ball":  75,
+                                         "Overload":  59
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "17601044514701",
+                        "coachName":  "Jose Mourinho",
+                        "sourceName":  "José Mourinho",
+                        "versionName":  "v1",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17601044514701",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  20,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  20
+                                            },
+                                            {
+                                                "pes_id":  17,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  17
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  89,
+                                         "Possession Game":  59,
+                                         "Long Ball Counter":  62,
+                                         "Out Wide":  68,
+                                         "Long Ball":  80,
+                                         "Overload":  59
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "100237",
+                        "coachName":  "Jose Mourinho",
+                        "sourceName":  "José Mourinho",
+                        "versionName":  "v0",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/100237",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  36,
+                                         "Possession Game":  30,
+                                         "Long Ball Counter":  67,
+                                         "Out Wide":  51,
+                                         "Long Ball":  82,
+                                         "Overload":  26
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "17606413224402",
+                        "coachName":  "Thomas Tuchel",
+                        "sourceName":  "Thomas Tuchel",
+                        "versionName":  "v5",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17606413224402",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  20,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  20
+                                            },
+                                            {
+                                                "pes_id":  5,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  5
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  89,
+                                         "Possession Game":  90,
+                                         "Long Ball Counter":  59,
+                                         "Out Wide":  70,
+                                         "Long Ball":  58,
+                                         "Overload":  58
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "17593259887058",
+                        "coachName":  "Thomas Tuchel",
+                        "sourceName":  "Thomas Tuchel",
+                        "versionName":  "v4",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17593259887058",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  17,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  17
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  45,
+                                         "Possession Game":  65,
+                                         "Long Ball Counter":  70,
+                                         "Out Wide":  85,
+                                         "Long Ball":  24,
+                                         "Overload":  24
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "4295122",
+                        "coachName":  "Thomas Tuchel",
+                        "sourceName":  "Thomas Tuchel",
+                        "versionName":  "v0",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/4295122",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  64,
+                                         "Possession Game":  73,
+                                         "Long Ball Counter":  47,
+                                         "Out Wide":  71,
+                                         "Long Ball":  27,
+                                         "Overload":  76
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "17598897033429",
+                        "coachName":  "Xabi Alonso",
+                        "sourceName":  "Xabi Alonso",
+                        "versionName":  "v9",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17598897033429",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  16,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  16
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  88,
+                                         "Possession Game":  88,
+                                         "Long Ball Counter":  46,
+                                         "Out Wide":  59,
+                                         "Long Ball":  42,
+                                         "Overload":  42
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "17593796759765",
+                        "coachName":  "Xabi Alonso",
+                        "sourceName":  "Xabi Alonso",
+                        "versionName":  "v6",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17593796759765",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  16,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  16
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  88,
+                                         "Possession Game":  72,
+                                         "Long Ball Counter":  35,
+                                         "Out Wide":  51,
+                                         "Long Ball":  28,
+                                         "Overload":  28
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    },
+                    {
+                        "id":  "17605339484373",
+                        "coachName":  "Xabi Alonso",
+                        "sourceName":  "Xabi Alonso",
+                        "versionName":  "v1",
+                        "imageUrl":  null,
+                        "source":  "eFootball DB API",
+                        "sourceUrl":  "https://api.efootballdb.com/api/2022/managers/17605339484373",
+                        "lastUpdated":  "2026-11-08T00:55:51.5567375Z",
+                        "playstyle":  null,
+                        "formation":  null,
+                        "boost":  null,
+                        "boostSource":  [
+                                            {
+                                                "pes_id":  7,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  7
+                                            },
+                                            {
+                                                "pes_id":  2,
+                                                "unk_0":  0,
+                                                "boost_value":  1,
+                                                "attribute_value":  2
+                                            }
+                                        ],
+                        "affinity":  {
+                                         "Quick Counter":  89,
+                                         "Possession Game":  71,
+                                         "Long Ball Counter":  54,
+                                         "Out Wide":  89,
+                                         "Long Ball":  56,
+                                         "Overload":  54
+                                     },
+                        "proficiency":  {
+                                            "Quick Counter":  null,
+                                            "Possession Game":  null,
+                                            "Long Ball Counter":  null,
+                                            "Out Wide":  null,
+                                            "Long Ball":  null,
+                                            "Overload":  null
+                                        },
+                        "cost":  null,
+                        "packName":  null
+                    }
+                ]
+}

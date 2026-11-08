@@ -13,13 +13,48 @@ const playerDataRequest = fetch('data/players.json').then(response => {
   return response.json();
 });
 
+const cardTypeFor = card => {
+  if (card.cardType) return card.cardType;
+  const name = String(card.cardName || '');
+  if (/\bstandard\b|\bbase\b/i.test(name)) return 'Standard';
+  if (/\bshow\s*time\b/i.test(name)) return 'Show Time';
+  if (/\bpotw\b|\bpotd\b/i.test(name)) return 'POTW';
+  if (/\bepic\b|\bbig\s*time\b/i.test(name)) return 'Epic';
+  return 'Other';
+};
+
+const groupPlayerCards = cardList => {
+  const groups = new Map();
+  cardList.forEach(card => {
+    const key = String(card.playerName || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(card);
+  });
+  return groups;
+};
+
+const preferredPlayerCard = cardGroup => {
+  const standardCards = cardGroup.filter(card => cardTypeFor(card) === 'Standard');
+  if (standardCards.length) {
+    return [...standardCards].sort((first, second) =>
+      (Number.isFinite(second.overallRating) ? second.overallRating : -1) -
+      (Number.isFinite(first.overallRating) ? first.overallRating : -1))[0];
+  }
+  const ratedCards = cardGroup.filter(card => Number.isFinite(card.overallRating));
+  if (ratedCards.length) {
+    return [...ratedCards].sort((first, second) => first.overallRating - second.overallRating)[0];
+  }
+  return cardGroup[0];
+};
+
 if (latestPlayerGrid) {
   playerDataRequest
     .then(playerData => {
       if (!playerData || !Array.isArray(playerData.players)) {
         throw new Error('Player-card database is missing its player collection.');
       }
-      const recentCards = [...playerData.players]
+      const recentCards = [...groupPlayerCards(playerData.players).values()]
+        .map(cardGroup => preferredPlayerCard(cardGroup))
         .sort((first, second) => String(second.releaseDate || '').localeCompare(String(first.releaseDate || '')))
         .slice(0, 8);
       if (!recentCards.length) {
@@ -127,6 +162,12 @@ if (playerStyleGuide && coachSelect && formationSelect &&
   let coachVersions = [];
   let setups = [];
   let cards = [];
+  let playerCardGroups = new Map();
+  let activePlayerCardGroup = [];
+  let activeCardTypeFilter = 'All Cards';
+  let activeVariantCardId = null;
+  let teamInfoById = new Map();
+  let managerInfoById = new Map();
   let activeSetup = null;
   let activeCoach = null;
   let activeCoachVersion = null;
@@ -351,24 +392,34 @@ if (playerStyleGuide && coachSelect && formationSelect &&
     const form = document.getElementById('formFilter').value;
     const pack = document.getElementById('packFilter').value.trim().toLowerCase();
     const coach = document.getElementById('cardCoachFilter').value.trim().toLowerCase();
-    const filtered = cards.filter(card => {
+    const filtered = [...playerCardGroups.values()].map(cardGroup => ({
+      card: preferredPlayerCard(cardGroup),
+      cardGroup
+    })).filter(({ card, cardGroup }) => {
       const style = styleById.get(card.playerStyleId);
-      const searchableText = normalizeSearch(`${card.playerName} ${card.cardName} ${style ? style.name : ''}`);
-      return (!query || searchableText.includes(query)) &&
+      const teamContext = card.teamContext || {};
+      const club = teamInfoById.get(String(teamContext.clubTeamId));
+      const nationalTeam = teamInfoById.get(String(teamContext.nationalTeamId));
+      const managersForCard = [club, nationalTeam]
+        .map(team => team && managerInfoById.get(String(team.managerId)))
+        .filter(Boolean);
+      return (!query || normalizeSearch(card.playerName).includes(query)) &&
       (!position || card.positions.includes(position)) &&
       (!styleId || card.playerStyleId === styleId) &&
       (!minimumRating || (Number.isFinite(card.overallRating) && card.overallRating >= minimumRating)) &&
       (!form || card.form === form) &&
       (!pack || String(card.packName || '').toLowerCase().includes(pack)) &&
-      (!coach || String(card.coachName || '').toLowerCase().includes(coach));
+      (!coach || [card.coachName, ...managersForCard.map(manager => manager.name)]
+        .some(name => normalizeSearch(name || '').includes(normalizeSearch(coach)))) &&
+      cardGroup.length > 0;
     });
     if (!filtered.length) {
       playerCardResults.innerHTML = '<p class="database-empty">Not in database yet — coming soon. Verified card-specific stats, skills, and images will appear here when available.</p>';
       playerCardDetail.hidden = true;
       return;
     }
-    playerCardResults.innerHTML = `<p class="card-result-count">${filtered.length} card${filtered.length === 1 ? '' : 's'} found</p>
-      ${filtered.map(card => `
+    playerCardResults.innerHTML = `<p class="card-result-count">${filtered.length} player${filtered.length === 1 ? '' : 's'} found</p>
+      ${filtered.map(({ card, cardGroup }) => `
         <button type="button" class="database-card" data-card-id="${escapeHtml(card.cardId)}">
           <span class="card-art-frame">
             ${(card.cardImageUrl || card.faceUrl || card.imageUrl) ? `<img src="${escapeHtml(card.cardImageUrl || card.faceUrl || card.imageUrl)}" alt="${escapeHtml(card.playerName)} portrait" loading="lazy" width="104" height="144" />` : ''}
@@ -376,8 +427,9 @@ if (playerStyleGuide && coachSelect && formationSelect &&
               ? `<span class="card-art-fallback" style="background:${teamColorFor(card)}" hidden>${escapeHtml(initialsFor(card.playerName))}</span>`
               : '<span class="card-art-missing">Player photo not available</span>'}
           </span>
-          <span class="database-card-copy"><strong>${escapeHtml(card.playerName)}</strong><span>${escapeHtml(card.cardName)}</span>
-            <span>Rating ${Number.isFinite(card.overallRating) ? escapeHtml(card.overallRating) : '—'} · ${escapeHtml(card.positions.join(', ') || '—')} · Form ${escapeHtml(card.form || '—')}</span></span>
+          <span class="database-card-copy"><strong>${escapeHtml(card.playerName)}</strong><span>${escapeHtml(card.cardName || 'Card version unavailable')}</span>
+            <span>Rating ${Number.isFinite(card.overallRating) ? escapeHtml(card.overallRating) : '—'} · ${escapeHtml(card.positions.join(', ') || '—')} · Form ${escapeHtml(card.formRating || card.form || '—')}</span>
+            <span class="card-count-badge">${cardGroup.length} card${cardGroup.length === 1 ? '' : 's'}</span></span>
         </button>`).join('')}`;
     playerCardResults.querySelectorAll('.card-art-frame img').forEach(image => {
       image.addEventListener('error', () => {
@@ -387,40 +439,125 @@ if (playerStyleGuide && coachSelect && formationSelect &&
     });
   };
 
-  const renderCardDetail = card => {
-    const style = styleById.get(card.playerStyleId);
-    const position = card.positions.find(item => item === 'DMF') || card.positions[0];
-    const instructions = styleInstructions(card.playerStyleId, position);
-    const stats = card.stats && typeof card.stats === 'object'
-      ? Object.entries(card.stats).map(([name, value]) => `
-        <div class="card-stat"><div><span>${escapeHtml(name)}</span><strong>${value === null || value === undefined ? '—' : escapeHtml(value)}</strong></div>
-          <span class="card-stat-track"><span style="width:${Math.max(0, Math.min(100, Number(value) || 0))}%"></span></span></div>`).join('')
-      : '<p class="database-empty">Not in database yet — coming soon. No sourced stats are available for this card.</p>';
-    const skills = Array.isArray(card.skills) && card.skills.length
-      ? `<ul class="card-skills">${card.skills.map(skill => `<li>${escapeHtml(skill)}</li>`).join('')}</ul>`
+  const renderTeamInfo = (teamId, label, shirtNumber) => {
+    const team = teamInfoById.get(String(teamId));
+    if (!team) return `<section class="team-info-card"><h5>${escapeHtml(label)}</h5><p>—</p></section>`;
+    const manager = managerInfoById.get(String(team.managerId));
+    const roster = Array.isArray(team.squad) ? team.squad : [];
+    const boosters = manager && Array.isArray(manager.boosters) ? manager.boosters.filter(Boolean) : [];
+    const affinities = manager && manager.affinities
+      ? Object.entries(manager.affinities).map(([style, value]) =>
+        `<span>${escapeHtml(style)}: ${value === null || value === undefined ? '—' : escapeHtml(value)}</span>`).join('')
+      : '';
+    return `<section class="team-info-card">
+      <h5>${escapeHtml(label)} · ${escapeHtml(team.name || '—')}</h5>
+      <p>${escapeHtml((team.competitionNames || []).join(' · ') || team.country || 'Competition not listed')}
+        ${shirtNumber === null || shirtNumber === undefined ? '' : ` · Shirt #${escapeHtml(shirtNumber)}`}</p>
+      ${manager ? `<div class="team-manager-info"><strong>Manager: ${escapeHtml(manager.name || '—')}</strong>
+        <span>${manager.age === null || manager.age === undefined ? '' : `Age ${escapeHtml(manager.age)}`}</span>
+        ${boosters.length ? `<span>Boost: ${boosters.map(escapeHtml).join(', ')}</span>` : ''}
+        ${affinities ? `<div class="manager-affinities">${affinities}</div>` : ''}
+        ${manager.sourceUrl ? `<a href="${escapeHtml(manager.sourceUrl)}" rel="noopener noreferrer">Manager source</a>` : ''}
+      </div>` : '<p>Manager: —</p>'}
+      ${roster.length ? `<details class="team-squad-details"><summary>Squad list (${roster.length})</summary>
+        <ol class="team-squad-list">${roster.map(player => `<li>
+          <span>${escapeHtml(player.playerName || '—')}${player.isCaptain ? ' · Captain' : ''}</span>
+          <span>${player.shirtNumber === null || player.shirtNumber === undefined ? '—' : `#${escapeHtml(player.shirtNumber)}`}${player.position ? ` · ${escapeHtml(player.position)}` : ''}</span>
+        </li>`).join('')}</ol>
+      </details>` : '<p>Squad list not available.</p>'}
+      ${team.sourceUrl ? `<a href="${escapeHtml(team.sourceUrl)}" rel="noopener noreferrer">Team source</a>` : ''}
+    </section>`;
+  };
+
+  const renderCardDetail = (card, cardGroup = [card]) => {
+    const typeFilters = ['All Cards', 'Epic', 'POTW', 'Standard', 'Show Time'];
+    const orderedVariants = [...cardGroup].sort((first, second) => {
+      const standardOrder = Number(cardTypeFor(second) === 'Standard') - Number(cardTypeFor(first) === 'Standard');
+      if (standardOrder) return standardOrder;
+      const firstRating = Number.isFinite(first.overallRating) ? first.overallRating : -1;
+      const secondRating = Number.isFinite(second.overallRating) ? second.overallRating : -1;
+      if (firstRating !== secondRating) return secondRating - firstRating;
+      return String(first.cardName).localeCompare(String(second.cardName));
+    });
+    const filteredVariants = activeCardTypeFilter === 'All Cards'
+      ? orderedVariants
+      : orderedVariants.filter(variant => cardTypeFor(variant) === activeCardTypeFilter);
+    if (!filteredVariants.some(variant => variant.cardId === activeVariantCardId)) {
+      activeVariantCardId = filteredVariants[0] ? filteredVariants[0].cardId : null;
+    }
+    const activeCard = filteredVariants.find(variant => variant.cardId === activeVariantCardId);
+    const activeStyle = activeCard && styleById.get(activeCard.playerStyleId);
+    const activePosition = activeCard && (activeCard.positions.find(item => item === 'DMF') || activeCard.positions[0]);
+    const activeInstructions = activeCard ? styleInstructions(activeCard.playerStyleId, activePosition) : ['None', 'None'];
+    const activeStats = activeCard && activeCard.fullStats && typeof activeCard.fullStats === 'object'
+      ? activeCard.fullStats
+      : activeCard && activeCard.stats;
+    const activeSourcedStats = activeStats && typeof activeStats === 'object'
+      ? Object.entries(activeStats).filter(([, value]) => Number.isFinite(value))
+      : [];
+    const activeStatsHtml = activeSourcedStats.length
+      ? activeSourcedStats.map(([name, value]) => `
+        <div class="card-stat"><div><span>${escapeHtml(name)}</span><strong>${escapeHtml(value)}</strong></div>
+          <span class="card-stat-track"><span style="width:${Math.max(0, Math.min(100, Number(value)))}%"></span></span></div>`).join('')
+      : '<p class="database-empty">Stats not added yet — tap Admin to add. Stats coming soon.</p>';
+    const activeSkills = activeCard && (Array.isArray(activeCard.playerSkills) ? activeCard.playerSkills : activeCard.skills);
+    const activeSkillsHtml = Array.isArray(activeSkills) && activeSkills.length
+      ? `<ul class="card-skills">${activeSkills.map(skill => `<li>${escapeHtml(skill)}</li>`).join('')}</ul>`
       : '<p class="database-empty">Not in database yet — coming soon. No card-specific skills are available.</p>';
+    const imageUrl = activeCard && (activeCard.cardImageUrl || activeCard.faceUrl || activeCard.imageUrl);
+    const variantsHtml = filteredVariants.length
+      ? filteredVariants.map(variant => {
+        const variantStyle = styleById.get(variant.playerStyleId);
+        const variantImage = variant.cardImageUrl || variant.faceUrl || variant.imageUrl;
+        return `<button type="button" class="player-variant-card" data-variant-card-id="${escapeHtml(variant.cardId)}"
+          aria-pressed="${String(variant.cardId === activeCard.cardId)}">
+          <span class="variant-card-image">${variantImage
+            ? `<img src="${escapeHtml(variantImage)}" alt="${escapeHtml(variant.playerName)}" loading="lazy" width="84" height="112" /><span class="card-art-fallback" hidden>${escapeHtml(initialsFor(variant.playerName))}</span>`
+            : `<span class="card-art-fallback">${escapeHtml(initialsFor(variant.playerName))}</span>`}</span>
+          <strong>${escapeHtml(variant.cardName || '—')}</strong>
+          <span>${cardTypeFor(variant)} · Rating ${Number.isFinite(variant.overallRating) ? escapeHtml(variant.overallRating) : '—'}</span>
+          <span>${escapeHtml(variantStyle ? variantStyle.name : '—')} · Form ${escapeHtml(variant.formRating || variant.form || '—')}</span>
+        </button>`;
+      }).join('')
+      : '<p class="database-empty">No cards match this filter.</p>';
     playerCardDetail.innerHTML = `
       <div class="player-card-detail-heading">
         <div class="card-art-frame card-art-large">
-          ${(card.cardImageUrl || card.faceUrl || card.imageUrl) ? `<img src="${escapeHtml(card.cardImageUrl || card.faceUrl || card.imageUrl)}" alt="${escapeHtml(card.playerName)} portrait" loading="lazy" width="180" height="250" />` : ''}
-          ${(card.cardImageUrl || card.faceUrl || card.imageUrl)
-            ? `<span class="card-art-fallback" style="background:${teamColorFor(card)}" hidden>${escapeHtml(initialsFor(card.playerName))}</span>`
+          ${imageUrl ? `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(activeCard.playerName)} portrait" loading="lazy" width="180" height="250" />` : ''}
+          ${imageUrl
+            ? `<span class="card-art-fallback" style="background:${teamColorFor(activeCard)}" hidden>${escapeHtml(initialsFor(activeCard.playerName))}</span>`
             : '<span class="card-art-missing">Player photo not available</span>'}
         </div>
-        <div><p class="eyebrow">${escapeHtml(card.cardName)}</p><h3>${escapeHtml(card.playerName)}</h3>
-          <p>Rating ${Number.isFinite(card.overallRating) ? escapeHtml(card.overallRating) : '—'} · ${escapeHtml(card.positions.join(', ') || '—')}</p>
-          <p class="form-grade${card.form ? ` form-grade-${escapeHtml(card.form)}` : ''}">Form ${escapeHtml(card.form || '—')}</p>
-          <p>${style ? escapeHtml(style.name) : 'Player style not recorded'}</p>
-          <p>Best instructions — Attacking: ${escapeHtml(instructions[0])} · Defensive: ${escapeHtml(instructions[1])}</p>
+        <div><p class="eyebrow">${escapeHtml(activeCard && activeCard.cardName || 'Card version unavailable')}</p><h3>${escapeHtml(card.playerName)}</h3>
+          <p>Rating ${activeCard && Number.isFinite(activeCard.overallRating) ? escapeHtml(activeCard.overallRating) : '—'} · ${escapeHtml(activeCard ? activeCard.positions.join(', ') || '—' : '—')}</p>
+          <p class="form-grade${activeCard && (activeCard.formRating || activeCard.form) ? ` form-grade-${escapeHtml(activeCard.formRating || activeCard.form)}` : ''}">Form ${escapeHtml(activeCard && (activeCard.formRating || activeCard.form) || '—')}</p>
+          <p>${activeStyle ? escapeHtml(activeStyle.name) : 'Player style not recorded'}</p>
+          <p>Best instructions — Attacking: ${escapeHtml(activeInstructions[0])} · Defensive: ${escapeHtml(activeInstructions[1])}</p>
         </div>
       </div>
-      <div class="card-detail-columns"><section><h4>Full stats</h4>${stats}</section><section><h4>Player skills for this card</h4>${skills}</section></div>`;
+      <section class="player-variants"><h4>All cards for ${escapeHtml(card.playerName)} <span>${cardGroup.length} total</span></h4>
+        <div class="variant-type-filters" role="group" aria-label="Filter player card versions">
+          ${typeFilters.map(filter => `<button type="button" data-card-type-filter="${escapeHtml(filter)}"
+            aria-pressed="${String(filter === activeCardTypeFilter)}">${escapeHtml(filter)}</button>`).join('')}
+        </div>
+        <div class="player-variant-list">${variantsHtml}</div>
+      </section>
+      <section class="card-team-context"><h4>Club, squad &amp; manager</h4>
+        <div class="team-info-grid">
+          ${activeCard ? renderTeamInfo(activeCard.teamContext && activeCard.teamContext.clubTeamId, 'Club team', activeCard.teamContext && activeCard.teamContext.clubShirtNumber) : ''}
+          ${activeCard ? renderTeamInfo(activeCard.teamContext && activeCard.teamContext.nationalTeamId, 'National team', activeCard.teamContext && activeCard.teamContext.nationalShirtNumber) : ''}
+        </div>
+      </section>
+      ${activeCard ? `<div class="card-detail-columns"><section><h4>Full stats · ${escapeHtml(activeCard.cardName || 'Card version unavailable')}</h4>${activeStatsHtml}</section>
+        <section><h4>Player skills for this card</h4>${activeSkillsHtml}</section></div>` : ''}`;
     playerCardDetail.hidden = false;
-    const image = playerCardDetail.querySelector('img');
-    if (image) image.addEventListener('error', () => {
-      image.hidden = true;
-      image.nextElementSibling.hidden = false;
-    }, { once: true });
+    playerCardDetail.querySelectorAll('img').forEach(image => {
+      image.addEventListener('error', () => {
+        image.hidden = true;
+        const fallback = image.nextElementSibling;
+        if (fallback && fallback.classList.contains('card-art-fallback')) fallback.hidden = false;
+      }, { once: true });
+    });
     playerCardDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
 
@@ -470,7 +607,26 @@ if (playerStyleGuide && coachSelect && formationSelect &&
     const cardButton = event.target.closest('[data-card-id]');
     if (!cardButton) return;
     const card = cards.find(item => item.cardId === cardButton.dataset.cardId);
-    if (card) renderCardDetail(card);
+    if (!card) return;
+    const key = normalizeSearch(card.playerName);
+    activePlayerCardGroup = playerCardGroups.get(key) || [card];
+    activeCardTypeFilter = 'All Cards';
+    const standardCard = activePlayerCardGroup.find(item => cardTypeFor(item) === 'Standard');
+    activeVariantCardId = standardCard ? standardCard.cardId : card.cardId;
+    renderCardDetail(card, activePlayerCardGroup);
+  });
+  playerCardDetail.addEventListener('click', event => {
+    const filterButton = event.target.closest('[data-card-type-filter]');
+    if (filterButton) {
+      activeCardTypeFilter = filterButton.dataset.cardTypeFilter;
+      renderCardDetail(activePlayerCardGroup[0], activePlayerCardGroup);
+      return;
+    }
+    const variantButton = event.target.closest('[data-variant-card-id]');
+    if (variantButton) {
+      activeVariantCardId = variantButton.dataset.variantCardId;
+      renderCardDetail(activePlayerCardGroup[0], activePlayerCardGroup);
+    }
   });
 
   const selectCoach = selectedValue => {
@@ -480,14 +636,12 @@ if (playerStyleGuide && coachSelect && formationSelect &&
     const coachId = activeCoachVersion ? activeCoachVersion.coachId : selectedValue;
     activeCoach = coaches.find(coach => coach.id === coachId);
     activeSetup = setups.find(setup => setup.coachId === coachId);
+    if (activeCoach) saveSelection('touchline:selectedCoach', activeCoach.id);
+    if (activeCoachVersion) saveSelection('touchline:selectedCoachVersion', activeCoachVersion.versionId);
     if (!activeCoach || !activeSetup) {
       instructionContent.innerHTML = '<p class="database-empty">Not in database yet — coming soon. No verified instruction setup is available for this coach.</p>';
       copySetupButton.disabled = true;
       return;
-    }
-    saveSelection('touchline:selectedCoach', activeCoach.id);
-    if (activeCoachVersion) {
-      saveSelection('touchline:selectedCoachVersion', activeCoachVersion.versionId);
     }
     activeFormation = formationNames.includes(activeSetup.formation) ? activeSetup.formation : formationNames[0];
     formationSelect.value = activeFormation;
@@ -536,25 +690,42 @@ if (playerStyleGuide && coachSelect && formationSelect &&
       if (!response.ok) throw new Error(`Shared guide database request failed (${response.status}).`);
       return response.json();
     }),
-    playerDataRequest
+    playerDataRequest,
+    fetch('data/coaches.json').then(response => {
+      if (!response.ok) throw new Error(`Coach-card database request failed (${response.status}).`);
+      return response.json();
+    })
   ])
-    .then(([data, playerData]) => {
+    .then(([data, playerData, coachData]) => {
       if (!Array.isArray(data.coaches) || !Array.isArray(data.playerInstructions) ||
         !Array.isArray(data.playerStyles) || !playerData || !Array.isArray(playerData.players) ||
-        !Array.isArray(data.coachVersions) || !Array.isArray(data.packs)) {
+        !Array.isArray(data.coachVersions) || !Array.isArray(data.packs) ||
+        !Array.isArray(playerData.teams) || !Array.isArray(playerData.managers) ||
+        !coachData || !Array.isArray(coachData.coaches)) {
         throw new Error('Shared database is missing a required collection.');
       }
       styleById = new Map(data.playerStyles.map(style => [style.id, style]));
-      coaches = data.coaches;
-      coachVersions = data.coachVersions;
+      const coachGroups = new Map();
+      coachVersions = coachData.coaches.map(version => {
+        const coachId = normalizeSearch(version.coachName).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        if (!version.id || !version.coachName || !version.versionName || !coachId) {
+          throw new Error('A sourced coach version is missing its identity.');
+        }
+        if (!coachGroups.has(coachId)) coachGroups.set(coachId, { id: coachId, name: version.coachName });
+        return { ...version, versionId: String(version.id), cardVersion: version.versionName, coachId };
+      });
+      coaches = [...coachGroups.values()].sort((first, second) => first.name.localeCompare(second.name));
       setups = data.playerInstructions;
       cards = playerData.players;
+      playerCardGroups = groupPlayerCards(cards);
+      teamInfoById = new Map(playerData.teams.map(team => [String(team.teamId), team]));
+      managerInfoById = new Map(playerData.managers.map(manager => [String(manager.managerId), manager]));
       if (setups.some(setup => setup.rows.some(row =>
         /^GK\b/i.test(row.position) || !allowedAttacking.has(row.attacking) || !allowedDefensive.has(row.defensive)))) {
         throw new Error('Coach instructions contain a goalkeeper row or an unsupported instruction.');
       }
-      if (cards.some(card => !card.cardId || !card.playerName || !card.cardName ||
-        !Array.isArray(card.positions) || !styleById.has(card.playerStyleId) ||
+      if (cards.some(card => !card.cardId || !card.playerName ||
+        !Array.isArray(card.positions) || (card.playerStyleId && !styleById.has(card.playerStyleId)) ||
         (card.overallRating !== null && !Number.isFinite(card.overallRating)) ||
         (card.form !== null && !['A', 'B', 'C', 'D', 'E'].includes(card.form)) ||
         !Array.isArray(card.skills) || !card.stats || typeof card.stats !== 'object' ||
@@ -604,18 +775,13 @@ if (playerStyleGuide && coachSelect && formationSelect &&
       } catch (error) {
         console.error('Unable to read the saved coach-card version:', error);
       }
-      const savedVersion = coachVersions.find(version => version.versionId === selectedVersionId);
-      const selectedCoachValue = savedVersion && savedVersion.coachId === selectedCoachId
-        ? `version:${savedVersion.versionId}`
-        : selectedCoachId;
+      const savedVersion = coachVersions.find(version =>
+        version.versionId === selectedVersionId && version.coachId === selectedCoachId) ||
+        coachVersions.find(version => version.coachId === selectedCoachId);
       activeCoach = coaches.find(coach => coach.id === selectedCoachId) || coaches[0];
       activeSetup = setups.find(setup => setup.coachId === activeCoach.id);
-      coachSelect.value = coachOptions.some(item => item.value === selectedCoachValue)
-        ? selectedCoachValue
-        : activeCoach.id;
-      activeCoachVersion = coachSelect.value.startsWith('version:')
-        ? coachVersions.find(version => version.versionId === coachSelect.value.slice('version:'.length))
-        : null;
+      activeCoachVersion = savedVersion || coachVersions.find(version => version.coachId === activeCoach.id);
+      coachSelect.value = activeCoachVersion ? `version:${activeCoachVersion.versionId}` : '';
       activeFormation = activeSetup && formationNames.includes(activeSetup.formation)
         ? activeSetup.formation
         : formationNames[0];

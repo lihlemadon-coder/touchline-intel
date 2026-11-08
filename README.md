@@ -23,9 +23,11 @@ The site is independent and is not affiliated with Konami. It does not automate 
 - `player-tracker.html` explains how to follow confirmed player announcements. It is not a live feed; verify current availability in-game.
 - `redeem-codes.html` provides code-safety guidance. It lists no code unless it can be verified through an official source.
 - `coach-squad-guides.html` covers coach selection and practical squad-building principles.
-- `data.json` is the shared source for coach names, suggested instruction setups, player styles, card records, coach-card versions, and packs. The `playerCards`, `coachVersions`, and `packs` collections are empty until verified, card-specific data is available; the site shows an explicit “Not in database yet — coming soon” message rather than inventing values.
+- `data.json` stores the guide's suggested instruction setups, player-style descriptions, and pack/calculator content. It remains separate from the sourced player and manager card records.
+- `data/players.json` stores sourced, card-specific player data and the associated club/national squads and manager records. The player list groups by name and selects the Standard card when one is available; opening a player shows the rest of that player's variants and their own stats and skills. Values not supplied by the source remain null.
+- `data/coaches.json` stores sourced manager-card versions, including their individual six-playstyle affinities. Coach Lab reads this file and `data/players.json`; unsupported or unmapped values are shown as unavailable rather than guessed.
 - The Player Styles & Instructions guide combines style recommendations, coach selection, formation selection, an adjustable pitch, player-style assignments, and card search filters. Goalkeepers are excluded from instruction tables.
-- Coach Lab shows coach names first. Card-version attributes are displayed only when present in the shared `coachVersions` collection. The selected coach is shared between Coach Lab and the combined guide in the same browser.
+- Coach Lab shows coach names first, then lets users select among sourced card versions. The selected coach name is shared with the combined guide in the same browser; version details are kept separate from editorial instruction setups.
 - eFHUB and eFootball DB are linked as research sources. Player card art, coach portraits, pack banners, ratings, skills, and live pack details are not copied or guessed; only add records that can be verified for the exact card/version.
 - The site header uses a sticky, horizontally scrolling, scrollbar-hidden navigation with snap points, scroll cues, arrows, and active-tab centering.
 
