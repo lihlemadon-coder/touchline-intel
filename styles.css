@@ -377,7 +377,7 @@ footer > p { color: var(--muted); font-size: .72rem; margin: 0; }
 .formation-chip { background: var(--lime); border-radius: 999px; color: var(--bg); font-family: var(--mono); font-size: .73rem; font-weight: 500; padding: 7px 12px; }
 .formation-layout { align-items: start; display: grid; gap: 20px; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); }
 .formation-layout > * { min-width: 0; }
-.formation-pitch { aspect-ratio: 16 / 10; background: linear-gradient(180deg, #1d5938 0%, #17462f 100%); border: 1px solid #397254; border-radius: 10px; margin: 0 auto; max-width: 520px; overflow: visible; padding: 16px; position: relative; width: 100%; }
+.formation-pitch { aspect-ratio: 16 / 10; background: linear-gradient(180deg, #1d5938 0%, #17462f 100%); border: 1px solid #397254; border-radius: 10px; margin: 0 auto 20px; max-width: 520px; overflow: visible; padding: 16px; position: relative; width: 100%; }
 .formation-pitch-lines { border: 1px solid rgba(220,255,225,.3); inset: 5%; pointer-events: none; position: absolute; }
 .formation-pitch-lines::before { border: 1px solid rgba(220,255,225,.3); border-radius: 50%; content: ''; height: 18%; left: 50%; position: absolute; top: 50%; transform: translate(-50%,-50%); width: 28%; }
 .formation-pitch-lines::after { border-top: 1px solid rgba(220,255,225,.3); content: ''; left: 0; position: absolute; right: 0; top: 50%; }
