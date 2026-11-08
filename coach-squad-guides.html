@@ -121,8 +121,8 @@
         </div>
         <div class="player-database">
           <div class="section-heading">
-            <div><p class="eyebrow">Shared database / card-specific</p><h3>Find a player card</h3></div>
-            <p>Skills and stats belong to individual cards. Choose a card before viewing its details.</p>
+            <div><p class="eyebrow">Shared database / Standard players</p><h3>Find a player</h3></div>
+            <p>Each player appears once in this list. Open a player to compare all card versions.</p>
           </div>
           <div class="player-filters">
             <label for="playerSearch">Player name<input id="playerSearch" type="search" placeholder="Search e.g. Haaland" autocomplete="off" /></label>
@@ -133,11 +133,14 @@
             <label for="packFilter">Pack<input id="packFilter" type="search" placeholder="Any pack" /></label>
             <label for="cardCoachFilter">Coach<input id="cardCoachFilter" type="search" placeholder="Any coach" /></label>
           </div>
-          <div id="playerCardResults" class="player-card-grid" aria-live="polite">
+          <div class="player-list-toolbar">
+            <p id="playerResultCount" class="card-result-count" aria-live="polite">Loading Standard players…</p>
+            <button type="button" class="player-see-more" id="playerSeeMoreButton" hidden>See more players →</button>
+          </div>
+          <div id="playerCardResults" class="player-standard-grid" aria-live="polite">
             <p class="lab-loading">Loading verified cards…</p>
           </div>
-          <section id="playerCardDetail" class="player-card-detail" aria-live="polite" hidden></section>
-          <p class="source-note">Card stats, club and national squads, and linked manager details are sourced from <a href="https://efootballdb.com/players" rel="noopener noreferrer">eFootball DB</a>. Squad names may reflect unlicensed in-game database names; verify current club affiliations and manager details in-game.</p>
+          <p class="source-note">Card stats, team license status, squads, manager portraits, and tactical layouts are sourced from <a href="https://efootballdb.com/players" rel="noopener noreferrer">eFootball DB</a>. Unlicensed in-game team names are labeled as such. Formation names are shown only when the source provides them; verify current club affiliations and tactics in-game.</p>
         </div>
         <div class="style-guide-grid" id="playerStyleGuide" aria-live="polite">
           <p class="lab-loading">Loading player styles…</p>

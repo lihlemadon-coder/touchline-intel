@@ -5562,6 +5562,7 @@
                         "playerName":  "Kylian Mbappé",
                         "cardName":  "Standard",
                         "overallRating":  null,
+                        "mainPosition":  "CF",
                         "playerStyle":  "goal-poacher",
                         "playerStyleId":  "goal-poacher",
                         "positions":  [
@@ -10013,6 +10014,7 @@
                         "playerName":  "Erling Haaland",
                         "cardName":  "Standard",
                         "overallRating":  null,
+                        "mainPosition":  "CF",
                         "playerStyle":  "fox-in-the-box",
                         "playerStyleId":  "fox-in-the-box",
                         "positions":  [
@@ -10124,6 +10126,226 @@
                                           "GK Coverage":  40
                                       },
                         "lastUpdated":  "2026-11-07T23:40:10.8710074Z"
+                    },
+                    {
+                        "cardId":  "162114",
+                        "playerName":  "Lamine Yamal",
+                        "cardName":  "Standard",
+                        "cardType":  "Standard",
+                        "overallRating":  null,
+                        "mainPosition":  "RWF",
+                        "playerStyle":  "prolific-winger",
+                        "playerStyleId":  "prolific-winger",
+                        "positions":  ["RMF", "LW", "RW", "CF"],
+                        "form":  null,
+                        "formRating":  null,
+                        "stats":  {
+                            "Offensive Awareness": 74, "Ball Control": 77, "Dribbling": 69,
+                            "Tight Possession": 79, "Low Pass": 72, "Lofted Pass": 46,
+                            "Finishing": 73, "Heading": 48, "Place Kicking": 62, "Curl": 77,
+                            "Defensive Awareness": 42, "Defensive Engagement": 60, "Tackling": 40,
+                            "Aggression": 58, "Speed": 82, "Acceleration": 84, "Kicking Power": 69,
+                            "Jump": 56, "Physical Contact": 72, "Balance": 55, "Stamina": 83,
+                            "Weak Foot Usage": 4, "Weak Foot Accuracy": 4, "Injury Resistance": 3
+                        },
+                        "skills":  [
+                            "Pinpoint Crossing", "Through Passing", "Trickster", "Phenomenal Finishing",
+                            "Fortress", "Heading", "Step On Skill Control", "Penalty Specialist",
+                            "First-time Shot", "No Look Pass", "Rabona", "Long-range Drive",
+                            "Cut Behind Turn", "Acrobatic Clear", "Long Reach Tackle"
+                        ],
+                        "playstyle":  "prolific-winger",
+                        "imageUrl":  "https://api.efootballdb.com/assets/2022/players/0/162114.small.png.webp",
+                        "cardImageUrl":  null,
+                        "faceUrl":  "https://api.efootballdb.com/assets/2022/players/0/162114.small.png.webp",
+                        "packName":  null,
+                        "packEndDate":  null,
+                        "source":  "eFootball DB",
+                        "sourceUrl":  "https://efootballdb.com/players/profile?id=162114",
+                        "releaseDate":  null,
+                        "teamColor":  null,
+                        "teamContext":  null,
+                        "playerSkills":  [
+                            "Pinpoint Crossing", "Through Passing", "Trickster", "Phenomenal Finishing",
+                            "Fortress", "Heading", "Step On Skill Control", "Penalty Specialist",
+                            "First-time Shot", "No Look Pass", "Rabona", "Long-range Drive",
+                            "Cut Behind Turn", "Acrobatic Clear", "Long Reach Tackle"
+                        ],
+                        "fullStats":  {
+                            "Offensive Awareness": 74, "Ball Control": 77, "Dribbling": 69,
+                            "Tight Possession": 79, "Low Pass": 72, "Lofted Pass": 46,
+                            "Finishing": 73, "Heading": 48, "Place Kicking": 62, "Curl": 77,
+                            "Defensive Awareness": 42, "Defensive Engagement": 60, "Tackling": 40,
+                            "Aggression": 58, "Speed": 82, "Acceleration": 84, "Kicking Power": 69,
+                            "Jump": 56, "Physical Contact": 72, "Balance": 55, "Stamina": 83,
+                            "Weak Foot Usage": 4, "Weak Foot Accuracy": 4, "GK Awareness": 70,
+                            "GK Catching": 40, "GK Clearing": 40, "GK Reflexes": 40, "GK Coverage": 40
+                        },
+                        "lastUpdated":  "2026-11-08T07:04:22.000Z"
+                    },
+                    {
+                        "cardId":  "132933",
+                        "playerName":  "Jude Bellingham",
+                        "cardName":  "Standard",
+                        "cardType":  "Standard",
+                        "overallRating":  null,
+                        "mainPosition":  "AMF",
+                        "playerStyle":  "hole-player",
+                        "playerStyleId":  "hole-player",
+                        "positions":  ["DMF", "CMF", "LMF", "RMF", "AMF", "SS", "CF"],
+                        "form":  null,
+                        "formRating":  null,
+                        "stats":  {
+                            "Offensive Awareness": 76, "Ball Control": 79, "Dribbling": 73,
+                            "Tight Possession": 77, "Low Pass": 75, "Lofted Pass": 69,
+                            "Finishing": 72, "Heading": 67, "Place Kicking": 58, "Curl": 63,
+                            "Defensive Awareness": 62, "Defensive Engagement": 71, "Tackling": 40,
+                            "Aggression": 72, "Speed": 75, "Acceleration": 74, "Kicking Power": 74,
+                            "Jump": 67, "Physical Contact": 76, "Balance": 74, "Stamina": 68,
+                            "Weak Foot Usage": 4, "Weak Foot Accuracy": 5, "Injury Resistance": 4
+                        },
+                        "skills":  [
+                            "Fighting Spirit", "Trickster", "Phenomenal Finishing", "Fortress",
+                            "Heading", "Rising Shots", "First-time Shot", "No Look Pass", "Long Ranger",
+                            "Long Throw", "Long-range Drive", "Cut Behind Turn", "Acrobatic Clear"
+                        ],
+                        "playstyle":  "hole-player",
+                        "imageUrl":  "https://api.efootballdb.com/assets/2022/players/0/132933.small.png.webp",
+                        "cardImageUrl":  null,
+                        "faceUrl":  "https://api.efootballdb.com/assets/2022/players/0/132933.small.png.webp",
+                        "packName":  null,
+                        "packEndDate":  null,
+                        "source":  "eFootball DB",
+                        "sourceUrl":  "https://efootballdb.com/players/profile?id=132933",
+                        "releaseDate":  null,
+                        "teamColor":  null,
+                        "teamContext":  null,
+                        "playerSkills":  [
+                            "Fighting Spirit", "Trickster", "Phenomenal Finishing", "Fortress",
+                            "Heading", "Rising Shots", "First-time Shot", "No Look Pass", "Long Ranger",
+                            "Long Throw", "Long-range Drive", "Cut Behind Turn", "Acrobatic Clear"
+                        ],
+                        "fullStats":  {
+                            "Offensive Awareness": 76, "Ball Control": 79, "Dribbling": 73,
+                            "Tight Possession": 77, "Low Pass": 75, "Lofted Pass": 69,
+                            "Finishing": 72, "Heading": 67, "Place Kicking": 58, "Curl": 63,
+                            "Defensive Awareness": 62, "Defensive Engagement": 71, "Tackling": 40,
+                            "Aggression": 72, "Speed": 75, "Acceleration": 74, "Kicking Power": 74,
+                            "Jump": 67, "Physical Contact": 76, "Balance": 74, "Stamina": 68,
+                            "Weak Foot Usage": 4, "Weak Foot Accuracy": 5, "GK Awareness": 78,
+                            "GK Catching": 40, "GK Clearing": 40, "GK Reflexes": 40, "GK Coverage": 40
+                        },
+                        "lastUpdated":  "2026-11-08T07:04:22.000Z"
+                    },
+                    {
+                        "cardId":  "133157",
+                        "playerName":  "Pedri",
+                        "cardName":  "Standard",
+                        "cardType":  "Standard",
+                        "overallRating":  null,
+                        "mainPosition":  "CMF",
+                        "playerStyle":  "orchestrator",
+                        "playerStyleId":  "orchestrator",
+                        "positions":  ["DMF", "CMF", "LMF", "AMF", "LW"],
+                        "form":  null,
+                        "formRating":  null,
+                        "stats":  {
+                            "Offensive Awareness": 82, "Ball Control": 84, "Dribbling": 67,
+                            "Tight Possession": 82, "Low Pass": 64, "Lofted Pass": 69,
+                            "Finishing": 77, "Heading": 48, "Place Kicking": 60, "Curl": 73,
+                            "Defensive Awareness": 63, "Defensive Engagement": 72, "Tackling": 40,
+                            "Aggression": 60, "Speed": 69, "Acceleration": 79, "Kicking Power": 67,
+                            "Jump": 58, "Physical Contact": 82, "Balance": 62, "Stamina": 74,
+                            "Weak Foot Usage": 5, "Weak Foot Accuracy": 5, "Injury Resistance": 3
+                        },
+                        "skills":  [
+                            "Sombrero", "Pinpoint Crossing", "Through Passing", "Trickster", "Captaincy",
+                            "Phenomenal Finishing", "Fortress", "Heading", "Chip Shot Control",
+                            "First-time Shot", "Long Ranger", "Long-range Drive", "Acrobatic Clear", "Mazing Run"
+                        ],
+                        "playstyle":  "orchestrator",
+                        "imageUrl":  "https://api.efootballdb.com/assets/2022/players/0/133157.small.png.webp",
+                        "cardImageUrl":  null,
+                        "faceUrl":  "https://api.efootballdb.com/assets/2022/players/0/133157.small.png.webp",
+                        "packName":  null,
+                        "packEndDate":  null,
+                        "source":  "eFootball DB",
+                        "sourceUrl":  "https://efootballdb.com/players/profile?id=133157",
+                        "releaseDate":  null,
+                        "teamColor":  null,
+                        "teamContext":  null,
+                        "playerSkills":  [
+                            "Sombrero", "Pinpoint Crossing", "Through Passing", "Trickster", "Captaincy",
+                            "Phenomenal Finishing", "Fortress", "Heading", "Chip Shot Control",
+                            "First-time Shot", "Long Ranger", "Long-range Drive", "Acrobatic Clear", "Mazing Run"
+                        ],
+                        "fullStats":  {
+                            "Offensive Awareness": 82, "Ball Control": 84, "Dribbling": 67,
+                            "Tight Possession": 82, "Low Pass": 64, "Lofted Pass": 69,
+                            "Finishing": 77, "Heading": 48, "Place Kicking": 60, "Curl": 73,
+                            "Defensive Awareness": 63, "Defensive Engagement": 72, "Tackling": 40,
+                            "Aggression": 60, "Speed": 69, "Acceleration": 79, "Kicking Power": 67,
+                            "Jump": 58, "Physical Contact": 82, "Balance": 62, "Stamina": 74,
+                            "Weak Foot Usage": 5, "Weak Foot Accuracy": 5, "GK Awareness": 82,
+                            "GK Catching": 40, "GK Clearing": 40, "GK Reflexes": 40, "GK Coverage": 40
+                        },
+                        "lastUpdated":  "2026-11-08T07:04:22.000Z"
+                    },
+                    {
+                        "cardId":  "117047",
+                        "playerName":  "VINI JR.",
+                        "cardName":  "Standard",
+                        "cardType":  "Standard",
+                        "overallRating":  null,
+                        "mainPosition":  "LWF",
+                        "playerStyle":  "prolific-winger",
+                        "playerStyleId":  "prolific-winger",
+                        "positions":  ["LMF", "LWF", "RWF", "SS", "CF"],
+                        "form":  null,
+                        "formRating":  null,
+                        "stats":  {
+                            "Offensive Awareness": 74, "Ball Control": 79, "Dribbling": 75,
+                            "Tight Possession": 76, "Low Pass": 77, "Lofted Pass": 41,
+                            "Finishing": 62, "Heading": 48, "Place Kicking": 58, "Curl": 72,
+                            "Defensive Awareness": 40, "Defensive Engagement": 54, "Tackling": 40,
+                            "Aggression": 60, "Speed": 84, "Acceleration": 83, "Kicking Power": 71,
+                            "Jump": 57, "Physical Contact": 69, "Balance": 48, "Stamina": 85,
+                            "Weak Foot Usage": 2, "Weak Foot Accuracy": 3, "Injury Resistance": 3
+                        },
+                        "skills":  [
+                            "Sombrero", "Flip Flap", "Through Passing", "Trickster",
+                            "Phenomenal Finishing", "Fortress", "Heading", "Step On Skill Control",
+                            "Penalty Specialist", "Chip Shot Control", "First Time Shot",
+                            "No Look Pass", "Long Range Drive", "Cut Behind Turn"
+                        ],
+                        "playstyle":  "prolific-winger",
+                        "imageUrl":  "https://assets.efootballdb.com/2022/players/117047_.webp",
+                        "cardImageUrl":  null,
+                        "faceUrl":  "https://assets.efootballdb.com/2022/players/117047_.webp",
+                        "packName":  null,
+                        "packEndDate":  null,
+                        "source":  "eFootball DB",
+                        "sourceUrl":  "https://efootballdb.com/players/profile?id=117047",
+                        "releaseDate":  null,
+                        "teamColor":  null,
+                        "teamContext":  null,
+                        "playerSkills":  [
+                            "Sombrero", "Flip Flap", "Through Passing", "Trickster",
+                            "Phenomenal Finishing", "Fortress", "Heading", "Step On Skill Control",
+                            "Penalty Specialist", "Chip Shot Control", "First Time Shot",
+                            "No Look Pass", "Long Range Drive", "Cut Behind Turn"
+                        ],
+                        "fullStats":  {
+                            "Offensive Awareness": 74, "Ball Control": 79, "Dribbling": 75,
+                            "Tight Possession": 76, "Low Pass": 77, "Lofted Pass": 41,
+                            "Finishing": 62, "Heading": 48, "Place Kicking": 58, "Curl": 72,
+                            "Defensive Awareness": 40, "Defensive Engagement": 54, "Tackling": 40,
+                            "Aggression": 60, "Speed": 84, "Acceleration": 83, "Kicking Power": 71,
+                            "Jump": 57, "Physical Contact": 69, "Balance": 48, "Stamina": 85,
+                            "Weak Foot Usage": 2, "Weak Foot Accuracy": 3, "GK Awareness": 73,
+                            "GK Catching": 40, "GK Clearing": 40, "GK Reflexes": 40, "GK Coverage": 40
+                        },
+                        "lastUpdated":  "2026-11-08T07:19:49.000Z"
                     }
                 ],
     "teams":  [
@@ -10131,6 +10353,21 @@
                       "teamId":  "109",
                       "name":  "Madrid Chamartin B",
                       "isNationalTeam":  false,
+                      "isLicensedTeam":  false,
+                      "formation":  null,
+                      "tacticPositions":  [
+                                               { "role": 0, "depth": 3, "width": 52 },
+                                               { "role": 1, "depth": 11, "width": 64 },
+                                               { "role": 1, "depth": 11, "width": 40 },
+                                               { "role": 3, "depth": 13, "width": 88 },
+                                               { "role": 2, "depth": 13, "width": 16 },
+                                               { "role": 4, "depth": 21, "width": 36 },
+                                               { "role": 5, "depth": 21, "width": 68 },
+                                               { "role": 7, "depth": 31, "width": 88 },
+                                               { "role": 6, "depth": 31, "width": 16 },
+                                               { "role": 8, "depth": 31, "width": 52 },
+                                               { "role": 12, "depth": 43, "width": 52 }
+                                           ],
                       "country":  "Spain",
                       "competitionNames":  [
                                                "Spanish League"
@@ -10396,6 +10633,21 @@
                       "teamId":  "16",
                       "name":  "Norway",
                       "isNationalTeam":  true,
+                      "isLicensedTeam":  true,
+                      "formation":  null,
+                      "tacticPositions":  [
+                                               { "role": 0, "depth": 3, "width": 52 },
+                                               { "role": 1, "depth": 11, "width": 64 },
+                                               { "role": 1, "depth": 11, "width": 40 },
+                                               { "role": 3, "depth": 13, "width": 88 },
+                                               { "role": 2, "depth": 13, "width": 16 },
+                                               { "role": 5, "depth": 25, "width": 64 },
+                                               { "role": 5, "depth": 25, "width": 40 },
+                                               { "role": 7, "depth": 25, "width": 88 },
+                                               { "role": 6, "depth": 25, "width": 16 },
+                                               { "role": 12, "depth": 43, "width": 64 },
+                                               { "role": 12, "depth": 43, "width": 40 }
+                                           ],
                       "country":  "Norway",
                       "competitionNames":  [
 
@@ -10591,6 +10843,21 @@
                       "teamId":  "173",
                       "name":  "Manchester B",
                       "isNationalTeam":  false,
+                      "isLicensedTeam":  false,
+                      "formation":  null,
+                      "tacticPositions":  [
+                                               { "role": 0, "depth": 3, "width": 52 },
+                                               { "role": 1, "depth": 11, "width": 64 },
+                                               { "role": 1, "depth": 11, "width": 40 },
+                                               { "role": 3, "depth": 13, "width": 88 },
+                                               { "role": 2, "depth": 13, "width": 16 },
+                                               { "role": 4, "depth": 19, "width": 52 },
+                                               { "role": 5, "depth": 25, "width": 68 },
+                                               { "role": 5, "depth": 25, "width": 36 },
+                                               { "role": 10, "depth": 39, "width": 84 },
+                                               { "role": 9, "depth": 39, "width": 20 },
+                                               { "role": 12, "depth": 43, "width": 52 }
+                                           ],
                       "country":  "England",
                       "competitionNames":  [
                                                "English League"
@@ -10793,6 +11060,21 @@
                       "teamId":  "8",
                       "name":  "France",
                       "isNationalTeam":  true,
+                      "isLicensedTeam":  true,
+                      "formation":  null,
+                      "tacticPositions":  [
+                                               { "role": 0, "depth": 3, "width": 52 },
+                                               { "role": 1, "depth": 11, "width": 64 },
+                                               { "role": 1, "depth": 11, "width": 40 },
+                                               { "role": 3, "depth": 13, "width": 88 },
+                                               { "role": 2, "depth": 13, "width": 16 },
+                                               { "role": 4, "depth": 21, "width": 68 },
+                                               { "role": 4, "depth": 21, "width": 36 },
+                                               { "role": 8, "depth": 31, "width": 52 },
+                                               { "role": 10, "depth": 35, "width": 88 },
+                                               { "role": 9, "depth": 35, "width": 16 },
+                                               { "role": 12, "depth": 43, "width": 52 }
+                                           ],
                       "country":  "France",
                       "competitionNames":  [
                                                "European Cup"
@@ -10991,6 +11273,7 @@
                          "name":  "Lam Brambilla",
                          "age":  46,
                          "teamName":  "Manchester B",
+                         "imageUrl":  "https://api.efootballdb.com/assets/2022/players/0/8491235.small.png.webp",
                          "boosters":  [
 
                                       ],
@@ -11006,9 +11289,10 @@
                      },
                      {
                          "managerId":  "4194394",
-                         "name":  "St�le Solbakken",
+                         "name":  "Ståle Solbakken",
                          "age":  58,
                          "teamName":  "Norway",
+                         "imageUrl":  "https://api.efootballdb.com/assets/2022/players/0/4194394.small.png.webp",
                          "boosters":  [
 
                                       ],
@@ -11027,6 +11311,7 @@
                          "name":  "Jimmy Cabrel",
                          "age":  58,
                          "teamName":  "France",
+                         "imageUrl":  "https://api.efootballdb.com/assets/2022/players/0/12583052.small.png.webp",
                          "boosters":  [
 
                                       ],
@@ -11045,6 +11330,7 @@
                          "name":  "Gustavo H.",
                          "age":  63,
                          "teamName":  "Madrid Chamartin B",
+                         "imageUrl":  "https://api.efootballdb.com/assets/2022/players/0/8488845.small.png.webp",
                          "boosters":  [
 
                                       ],

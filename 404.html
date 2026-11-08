@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page not found | Touchline Intel</title>
+</head>
+<body>
+  <p id="routeMessage">Page not found.</p>
+  <script>
+    const path = window.location.pathname;
+    const playerRoute = path.match(/^(.*)\/player\/([^/]+)\/?$/);
+    if (playerRoute) {
+      const base = playerRoute[1] || '';
+      window.location.replace(`${base}/player.html?name=${encodeURIComponent(decodeURIComponent(playerRoute[2]))}`);
+    }
+  </script>
+</body>
+</html>
